@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Nalanda App</string>
+    <string name="if_already_an_user_click_here"><u>If already an User. Click Here...</u></string>
+    <string name="click_here_if_you_are_new_user"><u>Click Here. If you are new User</u></string>
+</resources>
