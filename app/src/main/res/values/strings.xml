@@ -2,4 +2,9 @@
     <string name="app_name">Nalanda App</string>
     <string name="if_already_an_user_click_here"><u>If already an User. Click Here...</u></string>
     <string name="click_here_if_you_are_new_user"><u>Click Here. If you are new User</u></string>
+    <string name="nalanda_name">alanda</string>
+    <string name="explore_text">In strange place, unfamiliar faces, streets and languages all around. Wouldn\'t it be nice to find a place that feels just like home?</string>
+    <string name="select_hostel"><u>Select Hostel</u></string>
+    <string name="chanakaya_location">Near Interglobe college\n<b>Greater Noida</b></string>
+    <string name="hostel_description">Lorem ipsum dolor sit amet. Cum molestias nemo non dolor sunt ut omnis galisum itaque accusamus et magni alias rem sint dignissimos aut error quasi. In facilis dolorem qui minus temporibus ex rerum\n\nvoluptatem non explicabo maiores aut rerum totam rem sunt tempore. Sed ratione quisquam sit dolorem quia hic similique culpa est impedit asperiores. Aut odit culpa et nostrum quidem quo voluptatessunt \n\ncum voluptatibus galisum nam consectetur quisquam a eveniet modi.Et exercitationem reiciendis aut quas libero et officiis laudantium</string>
 </resources>
