@@ -35,8 +35,9 @@
                 android:fontFamily="@font/poppins_semi_bold"
                 android:text="alanda Living"
                 android:textColor="@color/black"
+                android:gravity="bottom"
                 android:textSize="18sp"
-                tools:ignore="HardcodedText" />
+                tools:ignore="HardcodedText"/>
         </LinearLayout>
 
         <LinearLayout

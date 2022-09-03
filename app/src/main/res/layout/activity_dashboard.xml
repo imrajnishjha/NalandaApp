@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/different_white"
+    tools:context=".Dashboard">
+
+    <LinearLayout
+        android:id="@+id/dashboard_nalanda_logo_and_name_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center|bottom"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/nalanda_logo" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="alanda Living"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/dashboard_profile_photo"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/chatprofile"
+        app:civ_border_color="@color/black"
+        app:civ_border_width="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dashboard_nalanda_logo_and_name_ll" />
+
+    <ImageView
+        android:id="@+id/dashboard_notification_icon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="@color/black"
+        android:importantForAccessibility="no"
+        android:src="@drawable/bell_icon"
+        app:layout_constraintBottom_toBottomOf="@id/dashboard_profile_photo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/dashboard_profile_photo" />
+
+    <FrameLayout
+        android:id="@+id/dashboard_fragment_holder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="7dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav_outline"
+        app:layout_constraintTop_toBottomOf="@id/dashboard_profile_photo" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#F0F0F0"
+        app:contentPadding="16dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav_outline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Nalanda Support"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Feel Free to Reach Us if You Need Any Kind of Help"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="#444444"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Contact Now"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                tools:ignore="HardcodedText" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/bottom_nav_outline"
+        android:layout_width="match_parent"
+        android:layout_height=".5dp"
+        android:background="@color/grey"
+        android:backgroundTint="@color/grey"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav_Bar" />
+
+    <io.ak1.BubbleTabBar
+        android:id="@+id/bottom_nav_Bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F5f5f5"
+        android:backgroundTint="@color/different_white"
+        android:elevation="16dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="3dp"
+        app:bubbletab_custom_font="@font/poppins_regular"
+        app:bubbletab_disabled_icon_color="@color/text_grey"
+        app:bubbletab_icon_padding="5sp"
+        app:bubbletab_icon_size="30sp"
+        app:bubbletab_menuResource="@menu/bottom_navigation"
+        app:bubbletab_title_size="12sp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,7 @@ public class SelectHostel extends AppCompatActivity {
     TextView oneSeater,twoSeater,threeSeater,fourSeater;
     ImageView chanakayaHostel,dronaHostel,collegeHostel;
     AppCompatButton selectDetailBackBtn;
-    CardView chanakayaDetail,dronaDetail,collegeDetail;
+    CardView chanakayaDetail,dronaDetail,collegeDetail,selectHostelPayBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +37,11 @@ public class SelectHostel extends AppCompatActivity {
         chanakayaDetail = findViewById(R.id.chanakaya_info);
         dronaDetail= findViewById(R.id.drona_info);
         collegeDetail = findViewById(R.id.college_info);
+        selectHostelPayBtn = findViewById(R.id.select_hostel_pay_btn);
 
 //Methodology
+        selectHostelPayBtn.setOnClickListener(view -> startActivity(new Intent(SelectHostel.this, Dashboard.class)));
+
         selectDetailBackBtn.setOnClickListener(view -> finish());
 
         oneSeater.setOnClickListener(view ->{
