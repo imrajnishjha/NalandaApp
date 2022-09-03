@@ -27,30 +27,27 @@ public class Dashboard extends AppCompatActivity {
         dashboardTrans.replace(R.id.dashboard_fragment_holder, new dashboard_fragment());
         dashboardTrans.commit();
 
-        bottomNavBar.addBubbleListener(new OnBubbleClickListener() {
-            @Override
-            public void onBubbleClick(int i) {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                Log.d("uhj", "onBubbleClick: "+i);
-                switch (i) {
-                    case 2131296478:
-                        transaction.replace(R.id.dashboard_fragment_holder, new food_fragment());
-                        break;
-                    case 2131296666:
-                        transaction.replace(R.id.dashboard_fragment_holder, new my_room_fragment());
-                        break;
-                    case 2131296405:
-                        transaction.replace(R.id.dashboard_fragment_holder, new dashboard_fragment());
-                        break;
-                    case 2131296456:
-                        transaction.replace(R.id.dashboard_fragment_holder, new explore_fragment());
-                        break;
-                    case 2131296644:
-                        transaction.replace(R.id.dashboard_fragment_holder, new refer_fragment());
-                        break;
-                }
-                transaction.commit();
+        bottomNavBar.addBubbleListener(i -> {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            Log.d("uhj", "onBubbleClick: "+i);
+            switch (i) {
+                case 2131296478:
+                    transaction.replace(R.id.dashboard_fragment_holder, new food_fragment());
+                    break;
+                case 2131296666:
+                    transaction.replace(R.id.dashboard_fragment_holder, new my_room_fragment());
+                    break;
+                case 2131296405:
+                    transaction.replace(R.id.dashboard_fragment_holder, new dashboard_fragment());
+                    break;
+                case 2131296456:
+                    transaction.replace(R.id.dashboard_fragment_holder, new explore_fragment());
+                    break;
+                case 2131296644:
+                    transaction.replace(R.id.dashboard_fragment_holder, new refer_fragment());
+                    break;
             }
+            transaction.commit();
         });
 
     }
