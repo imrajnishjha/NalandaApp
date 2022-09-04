@@ -10,6 +10,7 @@
     <color name="different_white">#f5f5f5</color>
     <color name="different_black">#212121</color>
     <color name="grey">#A4A4A4</color>
+    <color name="ligh_grey">#F6F6F6</color>
     <color name="text_grey">#686868</color>
     <color name="nalanda_blue">#2D6BC8</color>
     <color name="nav_chip">#2196f3</color>

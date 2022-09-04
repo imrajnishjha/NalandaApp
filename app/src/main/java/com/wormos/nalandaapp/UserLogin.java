@@ -10,7 +10,7 @@ import android.widget.TextView;
 public class UserLogin extends AppCompatActivity {
 
     TextView loginNewUserTv;
-    AppCompatButton loginBtn, loginBackBtn;
+    AppCompatButton loginBackBtn,loginBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,11 +18,17 @@ public class UserLogin extends AppCompatActivity {
         setContentView(R.layout.activity_user_login);
 
         loginNewUserTv = findViewById(R.id.login_new_user_tv);
-        loginBtn = findViewById(R.id.login_btn);
         loginBackBtn = findViewById(R.id.login_back_btn);
+        loginBtn = findViewById(R.id.login_btn);
 
-        loginNewUserTv.setOnClickListener(view -> startActivity(new Intent(UserLogin.this, UserRegistration.class)));
-        loginBtn.setOnClickListener(view -> startActivity(new Intent(UserLogin.this, SelectHostel.class)));
+        //Methodology
         loginBackBtn.setOnClickListener(view -> finish());
+
+        loginNewUserTv.setOnClickListener(view -> {
+            startActivity(new Intent(UserLogin.this, UserRegistration.class));
+            finish();
+        });
+
+        loginBtn.setOnClickListener(view -> startActivity(new Intent(this,Dashboard.class)));
     }
 }

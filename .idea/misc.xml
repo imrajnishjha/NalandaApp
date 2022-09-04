@@ -32,19 +32,24 @@
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout-sw325dp/activity_dashboard.xml" value="0.11302083333333333" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout-sw350dp/activity_dashboard.xml" value="0.11302083333333333" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout-sw375dp/activity_dashboard.xml" value="0.25416666666666665" />
+        <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout-sw375dp/activity_explore_nalanda.xml" value="0.25416666666666665" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout-sw400dp/activity_dashboard.xml" value="0.25416666666666665" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout-sw450dp/activity_dashboard.xml" value="0.190625" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout-sw480dp/activity_dashboard.xml" value="0.190625" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout-sw500dp/activity_dashboard.xml" value="0.190625" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout-w500dp/activity_dashboard.xml" value="0.136" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout-xhdpi/activity_dashboard.xml" value="0.25416666666666665" />
-        <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/activity_dashboard.xml" value="0.21403508771929824" />
+        <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/activity_dashboard.xml" value="0.61" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/activity_explore_nalanda.xml" value="0.21403508771929824" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/activity_hostel_detail.xml" value="0.21403508771929824" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/activity_main.xml" value="0.21403508771929824" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/activity_select_hostel.xml" value="0.20219298245614034" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/activity_user_login.xml" value="0.21403508771929824" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/activity_user_registration.xml" value="0.21403508771929824" />
+        <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/fragment_dashboard_fragment.xml" value="0.21403508771929824" />
+        <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/fragment_explore_fragment.xml" value="0.21403508771929824" />
+        <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/fragment_food_fragment.xml" value="0.21403508771929824" />
+        <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/fragment_my_room_fragment.xml" value="0.21403508771929824" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/fragment_refer_fragment.xml" value="0.21403508771929824" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/menu/bottom_navigation.xml" value="0.1" />
       </map>
