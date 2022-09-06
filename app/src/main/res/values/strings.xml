@@ -15,4 +15,9 @@
     <string name="add_money"><u>add money</u></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="male_female_str_array">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

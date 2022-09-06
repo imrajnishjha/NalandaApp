@@ -128,8 +128,8 @@
                 android:textSize="14sp"
                 tools:ignore="HardcodedText" />
 
-            <EditText
-                android:id="@+id/registration_male_female_edtTxt"
+            <Spinner
+                android:id="@+id/registration_male_female_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
