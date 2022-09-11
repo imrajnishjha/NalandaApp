@@ -4,12 +4,18 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -20,6 +26,9 @@ public class food_fragment extends Fragment {
 
     TextView day1,day2,day3,day4,day5,day6,day7,todayDate;
     ImageView star1,star2,star3,star4,star5;
+    RecyclerView foodMenuRV;
+    FirebaseRecyclerOptions<FoodMenuModel> options;
+    FoodMenuAdapter foodMenuAdapter;
     View view;
 
     @Override
@@ -49,9 +58,15 @@ public class food_fragment extends Fragment {
         star4 = view.findViewById(R.id.food_4star);
         star5 = view.findViewById(R.id.food_5star);
         todayDate = view.findViewById(R.id.food_day_and_week);
+        foodMenuRV = view.findViewById(R.id.food_menuRV);
+        foodMenuRV.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        //Methodology
 
 
         dateSetter(todayDate,day1,day2,day3,day4,day5,day6,day7);
+
 
         day1.setBackgroundColor(Color.parseColor("#2D6BC8"));
         day1.setOnClickListener(v-> menuChange(day1,day2,day3,day4,day5,day6,day7));
@@ -81,6 +96,47 @@ public class food_fragment extends Fragment {
         day5.setBackgroundColor(Color.parseColor("#7CB8E7"));
         day6.setBackgroundColor(Color.parseColor("#7CB8E7"));
         day7.setBackgroundColor(Color.parseColor("#7CB8E7"));
+        Log.d("test2", "menuChange: "+day1.getText().toString());
+
+        FirebaseRecyclerOptions<FoodMenuModel> options2 ;
+        if(day1.getText().toString().equals("Mon")){
+            options2 = new FirebaseRecyclerOptions.Builder<FoodMenuModel>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference("Food Menu").child("Monday"), FoodMenuModel.class)
+                    .build();
+        } else if(day1.getText().toString().equals("Tue")) {
+            options2 = new FirebaseRecyclerOptions.Builder<FoodMenuModel>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference("Food Menu").child("Tuesday"), FoodMenuModel.class)
+                    .build();
+
+        } else if(day1.getText().toString().equals("Wed")) {
+            options2 = new FirebaseRecyclerOptions.Builder<FoodMenuModel>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference("Food Menu").child("Wednesday"), FoodMenuModel.class)
+                    .build();
+
+        } else if(day1.getText().toString().equals("Thu")) {
+            options2 = new FirebaseRecyclerOptions.Builder<FoodMenuModel>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference("Food Menu").child("Thursday"), FoodMenuModel.class)
+                    .build();
+
+        } else if(day1.getText().toString().equals("Fri")) {
+            options2 = new FirebaseRecyclerOptions.Builder<FoodMenuModel>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference("Food Menu").child("Friday"), FoodMenuModel.class)
+                    .build();
+
+        } else if(day1.getText().toString().equals("Sun")) {
+            options2 = new FirebaseRecyclerOptions.Builder<FoodMenuModel>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference("Food Menu").child("Sunday"), FoodMenuModel.class)
+                    .build();
+
+        } else  {
+            options2 = new FirebaseRecyclerOptions.Builder<FoodMenuModel>()
+                    .setQuery(FirebaseDatabase.getInstance().getReference("Food Menu").child("Saturday"), FoodMenuModel.class)
+                    .build();
+        }
+
+        FoodMenuAdapter shiftAdapter = new FoodMenuAdapter(options2);
+        foodMenuRV.setAdapter(shiftAdapter);
+        shiftAdapter.startListening();
     }
 
     //menu Day and Date Selector
@@ -101,6 +157,14 @@ public class food_fragment extends Fragment {
         day5.setText(weekCalculator(weekNo+4).substring(0,3));
         day6.setText(weekCalculator(weekNo+5).substring(0,3));
         day7.setText(weekCalculator(weekNo+6).substring(0,3));
+
+        //Food RecycleView Implementation
+
+        options = new FirebaseRecyclerOptions.Builder<FoodMenuModel>()
+                .setQuery(FirebaseDatabase.getInstance().getReference("Food Menu").child("Sunday"), FoodMenuModel.class)
+                .build();
+        foodMenuAdapter = new FoodMenuAdapter(options);
+        foodMenuRV.setAdapter(foodMenuAdapter);
     }
 
     //weekDayCalculator
@@ -159,6 +223,13 @@ public class food_fragment extends Fragment {
             star5.setImageResource(R.drawable.starimg);
         }
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        foodMenuAdapter.startListening();
+    }
+
 
 
 }

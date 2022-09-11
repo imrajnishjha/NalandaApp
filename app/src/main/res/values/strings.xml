@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Nalanda Livings</string>
     <string name="nalanda_name">alanda</string>
+    <string name="databselink">https://nalanda-app-default-rtdb.asia-southeast1.firebasedatabase.app</string>
     <string name="explore_text">In strange place, unfamiliar faces, streets and languages all around. Wouldn\'t it be nice to find a place that feels just like home?</string>
     <string name="select_hostel"><u>Select Hostel</u></string>
     <string name="chanakaya_location">Near Interglobe college\n<b>Greater Noida</b></string>
