@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/different_white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/mess_time"
+            android:text="08:00am  09:30am"
+            android:textColor="@color/text_grey"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/poppins_regular"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="4dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="35dp"
+                android:background="#A62A9D8F"/>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="25dp"
+                app:cardCornerRadius="8dp">
+
+                <TextView
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:background="#2A9D8F"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Chhole, Puri, Kheer / Suji Halwa, Moong Dal, Rice, Salad"
+                    android:textColor="@color/black"
+                    android:background="#662A9D8F"
+                    android:paddingStart="16dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="6dp"
+                    android:paddingEnd="5dp"/>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

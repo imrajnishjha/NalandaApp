@@ -6,11 +6,14 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.wormos.nalandaapp.UserLogin;
 import com.wormos.nalandaapp.UserRegistration;
 
 public class ExploreNalanda extends AppCompatActivity {
     AppCompatButton loginBtn,exploreBtn;
+    private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +26,14 @@ public class ExploreNalanda extends AppCompatActivity {
         //Methodology
         exploreBtn.setOnClickListener(view -> startActivity(new Intent(this, UserRegistration.class)));
         loginBtn.setOnClickListener(view -> startActivity(new Intent(this, UserLogin.class)));
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            startActivity(new Intent(ExploreNalanda.this, Dashboard.class));
+            finish();
+        }
     }
 }

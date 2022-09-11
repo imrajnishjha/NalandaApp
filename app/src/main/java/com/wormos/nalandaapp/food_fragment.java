@@ -1,5 +1,6 @@
 package com.wormos.nalandaapp;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,58 +8,157 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link food_fragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class food_fragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public food_fragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment food_fragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static food_fragment newInstance(String param1, String param2) {
-        food_fragment fragment = new food_fragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    TextView day1,day2,day3,day4,day5,day6,day7,todayDate;
+    ImageView star1,star2,star3,star4,star5;
+    View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_food_fragment, container, false);
+        view = inflater.inflate(R.layout.fragment_food_fragment, container, false);
+
+        //initialization
+        day1 = view.findViewById(R.id.food_day1);
+        day2 = view.findViewById(R.id.food_day2);
+        day3 = view.findViewById(R.id.food_day3);
+        day4 = view.findViewById(R.id.food_day4);
+        day5 = view.findViewById(R.id.food_day5);
+        day6 = view.findViewById(R.id.food_day6);
+        day7 = view.findViewById(R.id.food_day7);
+        star1 = view.findViewById(R.id.food_1star);
+        star2 = view.findViewById(R.id.food_2star);
+        star3 = view.findViewById(R.id.food_3star);
+        star4 = view.findViewById(R.id.food_4star);
+        star5 = view.findViewById(R.id.food_5star);
+        todayDate = view.findViewById(R.id.food_day_and_week);
+
+
+        dateSetter(todayDate,day1,day2,day3,day4,day5,day6,day7);
+
+        day1.setBackgroundColor(Color.parseColor("#2D6BC8"));
+        day1.setOnClickListener(v-> menuChange(day1,day2,day3,day4,day5,day6,day7));
+        day2.setOnClickListener(v-> menuChange(day2,day1,day3,day4,day5,day6,day7));
+        day3.setOnClickListener(v-> menuChange(day3,day2,day1,day4,day5,day6,day7));
+        day4.setOnClickListener(v-> menuChange(day4,day2,day3,day1,day5,day6,day7));
+        day5.setOnClickListener(v-> menuChange(day5,day2,day3,day4,day1,day6,day7));
+        day6.setOnClickListener(v-> menuChange(day6,day2,day3,day4,day5,day1,day7));
+        day7.setOnClickListener(v-> menuChange(day7,day2,day3,day4,day5,day6,day1));
+
+        star1.setOnClickListener(view1 -> setRating(1));
+        star2.setOnClickListener(view1 -> setRating(2));
+        star3.setOnClickListener(view1 -> setRating(3));
+        star4.setOnClickListener(view1 -> setRating(4));
+        star5.setOnClickListener(view1 -> setRating(5));
+
+
+        return view;
     }
+
+    //Different day menuChange
+    public void menuChange(TextView day1,TextView day2,TextView day3,TextView day4,TextView day5,TextView day6,TextView day7){
+        day1.setBackgroundColor(Color.parseColor("#2D6BC8"));
+        day2.setBackgroundColor(Color.parseColor("#7CB8E7"));
+        day3.setBackgroundColor(Color.parseColor("#7CB8E7"));
+        day4.setBackgroundColor(Color.parseColor("#7CB8E7"));
+        day5.setBackgroundColor(Color.parseColor("#7CB8E7"));
+        day6.setBackgroundColor(Color.parseColor("#7CB8E7"));
+        day7.setBackgroundColor(Color.parseColor("#7CB8E7"));
+    }
+
+    //menu Day and Date Selector
+    public void dateSetter(TextView todayDateTv, TextView day1, TextView day2, TextView day3, TextView day4, TextView day5, TextView day6, TextView day7){
+        Calendar calendar = Calendar.getInstance();
+        Date date = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd MMM yyyy", Locale.getDefault());
+        String todaysDate = df.format(date);
+        final int weekNo = calendar.get(Calendar.DAY_OF_WEEK);
+        String weekday = weekCalculator(weekNo);
+        StringBuilder s = new StringBuilder(weekday);
+        s.append(", ").append(todaysDate);
+        todayDateTv.setText(s);
+        day1.setText(weekday.substring(0,3));
+        day2.setText(weekCalculator(weekNo+1).substring(0,3));
+        day3.setText(weekCalculator(weekNo+2).substring(0,3));
+        day4.setText(weekCalculator(weekNo+3).substring(0,3));
+        day5.setText(weekCalculator(weekNo+4).substring(0,3));
+        day6.setText(weekCalculator(weekNo+5).substring(0,3));
+        day7.setText(weekCalculator(weekNo+6).substring(0,3));
+    }
+
+    //weekDayCalculator
+    public String weekCalculator(int i) {
+        int k = i % 7;
+        switch (k) {
+            case 5:
+                return "Thursday";
+            case 6:
+                return "Friday";
+            case 0:
+                return "Saturday";
+            case 1:
+                return "Sunday";
+            case 2:
+                return "Monday";
+            case 3:
+                return "Tuesday";
+            case 4:
+                return "Wednesday";
+            default:
+                return null;
+        }
+    }
+
+    public void setRating(int num){
+        if(num==5){
+            star1.setImageResource(R.drawable.colorstarimg);
+            star4.setImageResource(R.drawable.colorstarimg);
+            star3.setImageResource(R.drawable.colorstarimg);
+            star2.setImageResource(R.drawable.colorstarimg);
+            star5.setImageResource(R.drawable.colorstarimg);
+        } else if(num==4){
+            star1.setImageResource(R.drawable.colorstarimg);
+            star4.setImageResource(R.drawable.colorstarimg);
+            star3.setImageResource(R.drawable.colorstarimg);
+            star2.setImageResource(R.drawable.colorstarimg);
+            star5.setImageResource(R.drawable.starimg);
+        } else if(num==3){
+            star1.setImageResource(R.drawable.colorstarimg);
+            star4.setImageResource(R.drawable.starimg);
+            star3.setImageResource(R.drawable.colorstarimg);
+            star2.setImageResource(R.drawable.colorstarimg);
+            star5.setImageResource(R.drawable.starimg);
+        }else if(num==2){
+            star1.setImageResource(R.drawable.colorstarimg);
+            star4.setImageResource(R.drawable.starimg);
+            star3.setImageResource(R.drawable.starimg);
+            star2.setImageResource(R.drawable.colorstarimg);
+            star5.setImageResource(R.drawable.starimg);
+        }else if(num==1){
+            star1.setImageResource(R.drawable.colorstarimg);
+            star4.setImageResource(R.drawable.starimg);
+            star3.setImageResource(R.drawable.starimg);
+            star2.setImageResource(R.drawable.starimg);
+            star5.setImageResource(R.drawable.starimg);
+        }
+    }
+
+
 }

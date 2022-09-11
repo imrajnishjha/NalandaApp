@@ -1,15 +1,302 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/different_white"
+    android:fillViewport="true"
     tools:context=".food_fragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Food Fragment"
-        android:textColor="@color/black" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/food_rating_cv"
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="#F0F0F0"
+            app:contentPadding="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/msg_logo"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="message"
+                    tools:ignore="HardcodedText" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/how_is_dinner"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textColor="@color/different_black"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="last night dinner menu"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_grey"
+                        android:fontFamily="@font/poppins_regular"
+                        tools:ignore="HardcodedText" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-5dp"
+                        android:layout_marginStart="-15dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/food_1star"
+                            android:src="@drawable/starimg"/>
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/food_2star"
+                            android:src="@drawable/starimg"/>
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/food_3star"
+                            android:src="@drawable/starimg"/>
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/food_4star"
+                            android:src="@drawable/starimg"/>
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="40dp"
+                            android:id="@+id/food_5star"
+                            android:src="@drawable/starimg"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/food_today_text"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="19dp"
+            android:textSize="16sp"
+            android:textColor="@color/text_grey"
+            android:fontFamily="@font/poppins_regular"
+            android:text="@string/today"
+            app:layout_constraintTop_toBottomOf="@id/food_rating_cv"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/food_day_and_week"
+            android:layout_marginStart="19dp"
+            android:textColor="@color/different_black"
+            android:fontFamily="@font/poppins_regular"
+            app:layout_constraintTop_toBottomOf="@id/food_today_text"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/food_weekdayLL"
+            android:orientation="horizontal"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/food_day_and_week">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:id="@+id/food_day1cv"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                app:cardCornerRadius="18dp"
+                android:backgroundTint="@color/nalanda_blue">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:id="@+id/food_day1"
+                    android:layout_gravity="center"
+                    android:background="@drawable/food_curve_menu_item"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/food_day2cv"
+                android:layout_weight="1"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                app:cardCornerRadius="18dp"
+                android:backgroundTint="#7CB8E7">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/food_day2"
+                    android:background="@drawable/food_curve_menu_item"
+                    android:layout_gravity="center"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/food_day3cv"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="18dp"
+                android:backgroundTint="#7CB8E7">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:id="@+id/food_day3"
+                    android:background="@drawable/food_curve_menu_item"
+                    android:layout_gravity="center"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"/>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/food_day4cv"
+                android:layout_weight="1"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                app:cardCornerRadius="18dp"
+                android:backgroundTint="#7CB8E7">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:id="@+id/food_day4"
+                    android:layout_gravity="center"
+                    android:background="@drawable/food_curve_menu_item"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"/>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/food_day5cv"
+                android:layout_weight="1"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                app:cardCornerRadius="18dp"
+                android:backgroundTint="#7CB8E7">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:id="@+id/food_day5"
+                    android:layout_gravity="center"
+                    android:background="@drawable/food_curve_menu_item"
+                    android:textSize="12sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"/>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/food_day6cv"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                app:cardCornerRadius="18dp"
+                android:backgroundTint="#7CB8E7">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:id="@+id/food_day6"
+                    android:layout_gravity="center"
+                    android:textSize="12sp"
+                    android:background="@drawable/food_curve_menu_item"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:id="@+id/food_day7cv"
+                android:layout_weight="1"
+                android:layout_marginStart="7dp"
+                android:layout_marginEnd="7dp"
+                app:cardCornerRadius="18dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:id="@+id/food_day7"
+                    android:layout_gravity="center"
+                    android:textSize="12sp"
+                    android:background="@drawable/food_curve_menu_item"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"/>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="15dp"
+            app:layout_constraintTop_toBottomOf="@id/food_weekdayLL"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

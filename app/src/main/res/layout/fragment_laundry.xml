@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:fillViewport="true"
+android:background="@color/different_white"
+tools:context=".laundry">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/laudry_service_text"
+        android:text="@string/laundry_services"
+        android:fontFamily="@font/poppins_regular"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/laundry_calenderCV"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginStart="16dp"
+        android:clickable="false"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toBottomOf="@id/laudry_service_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <CalendarView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:theme="@style/CardView.Dark"
+            android:id="@+id/laundry_calender"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</ScrollView>
