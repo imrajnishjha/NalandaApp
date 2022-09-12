@@ -23,22 +23,26 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/transport_fragment_bus_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/light_blue_rounded_btn"
-        android:fontFamily="@font/poppins_regular"
-        android:textColor="@color/white"
         android:text="Bus"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_regular"
         android:textAllCaps="false"
+        android:layout_marginTop="-4dp"
+        android:layout_marginBottom="-4dp"
+        android:background="@drawable/light_blue_rounded_btn"
         app:layout_constraintEnd_toStartOf="@id/transport_fragment_cab_btn"
-        app:layout_constraintTop_toTopOf="@id/transport_fragment_cab_btn"
+        app:layout_constraintTop_toTopOf="@id/transport_fragment_transport_timing_txt"
+        app:layout_constraintBottom_toBottomOf="@id/transport_fragment_transport_timing_txt"
         tools:ignore="HardcodedText" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/transport_fragment_cab_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="-4dp"
+        android:layout_marginBottom="-4dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/light_blue_rounded_btn"
         android:fontFamily="@font/poppins_regular"
@@ -46,7 +50,8 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/transport_fragment_transport_timing_txt"
+        app:layout_constraintTop_toTopOf="@id/transport_fragment_transport_timing_txt"
         tools:ignore="HardcodedText"/>
 
     <androidx.recyclerview.widget.RecyclerView
