@@ -40,11 +40,12 @@ public class dashboard_fragment extends Fragment {
 
         dashboardTransportCv.setOnClickListener(view -> {
             selectSubMenu(dashboardTransportCv);
+            fragmentInflater("Transport");
         });
 
         dashboardLaundryCv.setOnClickListener(view -> {
             selectSubMenu(dashboardLaundryCv);
-            fragmentInflater(1);;
+            fragmentInflater("Laundry");
         });
 
         dashboardHouseKeepingCv.setOnClickListener(view -> {
@@ -64,7 +65,6 @@ public class dashboard_fragment extends Fragment {
         selectedSubMenuCv.setCardBackgroundColor(getResources().getColor(R.color.nalanda_blue));
     }
 
-
     private void greyOutAllSubMenuCv() {
         dashboardTransportCv.setCardBackgroundColor(getResources().getColor(R.color.ligh_grey));
         dashboardLaundryCv.setCardBackgroundColor(getResources().getColor(R.color.ligh_grey));
@@ -72,20 +72,23 @@ public class dashboard_fragment extends Fragment {
         dashboardRepairCv.setCardBackgroundColor(getResources().getColor(R.color.ligh_grey));
     }
 
-    public void fragmentInflater(int i){
+    public void fragmentInflater(String submenuChoice){
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        switch (i) {
-            case 1:
+        switch (submenuChoice) {
+            case "Laundry":
                 transaction.replace(R.id.dashboard_fragment_frame, new laundry());
                 break;
-            case 2:
+            case "My Room":
                 transaction.replace(R.id.dashboard_fragment_frame, new my_room_fragment());
                 break;
-            case 3:
+            case "Dashboard":
                 transaction.replace(R.id.dashboard_fragment_frame, new dashboard_fragment());
                 break;
-            case 4:
+            case "Explore":
                 transaction.replace(R.id.dashboard_fragment_frame, new explore_fragment());
+                break;
+            case "Transport":
+                transaction.replace(R.id.dashboard_fragment_frame, new TransportFragment());
                 break;
             default:
                 transaction.replace(R.id.dashboard_fragment_frame, new default_dashboard());

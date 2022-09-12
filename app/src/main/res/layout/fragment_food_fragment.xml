@@ -21,7 +21,10 @@
             android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
             android:backgroundTint="#F0F0F0"
-            app:contentPadding="16dp"
+            app:contentPaddingLeft="16dp"
+            app:contentPaddingRight="16dp"
+            app:contentPaddingTop="16dp"
+            android:paddingBottom="8dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -68,27 +71,27 @@
 
                         <ImageView
                             android:layout_width="50dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:id="@+id/food_1star"
                             android:src="@drawable/starimg"/>
                         <ImageView
                             android:layout_width="50dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:id="@+id/food_2star"
                             android:src="@drawable/starimg"/>
                         <ImageView
                             android:layout_width="50dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:id="@+id/food_3star"
                             android:src="@drawable/starimg"/>
                         <ImageView
                             android:layout_width="50dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:id="@+id/food_4star"
                             android:src="@drawable/starimg"/>
                         <ImageView
                             android:layout_width="50dp"
-                            android:layout_height="40dp"
+                            android:layout_height="50dp"
                             android:id="@+id/food_5star"
                             android:src="@drawable/starimg"/>
 

@@ -7,16 +7,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="16dp">
 
-    <ImageView
+    <androidx.constraintlayout.utils.widget.ImageFilterView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/videoImg"
-        android:background="@color/different_black" />
+        android:scaleType="centerCrop"
+        android:id="@+id/story_thumbnail"/>
+
 
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:id="@+id/playBtn"
+        android:id="@+id/storyPlayBtn"
         android:layout_gravity="center"
         android:src="@drawable/playbtn"/>
     <ImageView

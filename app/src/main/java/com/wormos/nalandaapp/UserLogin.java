@@ -7,7 +7,9 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,7 @@ public class UserLogin extends AppCompatActivity {
     FirebaseAuth mAuth;
     EditText loginEmail;
     TextInputEditText loginPassword;
+    RelativeLayout progressbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class UserLogin extends AppCompatActivity {
         loginNewUserTv = findViewById(R.id.login_new_user_tv);
         loginBackBtn = findViewById(R.id.login_back_btn);
         loginBtn = findViewById(R.id.login_btn);
+        progressbar = findViewById(R.id.user_login_progressBarRL);
         mAuth = FirebaseAuth.getInstance();
 
         //Methodology
@@ -46,10 +50,10 @@ public class UserLogin extends AppCompatActivity {
             finish();
         });
 
-        loginBtn.setOnClickListener(view -> loginUser());
+        loginBtn.setOnClickListener(view -> loginUser(progressbar));
     }
 
-    private void loginUser(){
+    private void loginUser(RelativeLayout progressbar){
         loginEmail = findViewById(R.id.login_username_edtTxt);
         loginPassword = findViewById(R.id.login_password_edtTxt);
         String login_email = loginEmail.getText().toString().toLowerCase();
@@ -62,6 +66,7 @@ public class UserLogin extends AppCompatActivity {
             loginPassword.setError("Password cannot be empty!");
             loginPassword.requestFocus();
         } else {
+            progressbar.setVisibility(View.VISIBLE);
             mAuth.signInWithEmailAndPassword(login_email, login_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -69,8 +74,10 @@ public class UserLogin extends AppCompatActivity {
                         startActivity(new Intent(UserLogin.this,Dashboard.class).putExtra("userEmail",login_email.replaceAll("\\.","%7")));
                         finish();
                         Toast.makeText(UserLogin.this, "You are logged in!", Toast.LENGTH_SHORT).show();
+                        progressbar.setVisibility(View.GONE);
                     } else {
                         Toast.makeText(UserLogin.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                        progressbar.setVisibility(View.GONE);
                     }
                 }
             });

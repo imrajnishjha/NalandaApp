@@ -56,25 +56,39 @@
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/menu/bottom_navigation.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/button_style_curve.xml" value="0.1455" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/button_style_more_curve.xml" value="0.1455" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/circle_shape.xml" value="0.1455" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/circular_progress_bar.xml" value="0.1455" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/dropdown_item_background.xml" value="0.1455" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/food_curve_menu_item.xml" value="0.1455" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/greyed_rounded_btn.xml" value="0.1625" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/light_blue_rounded_btn.xml" value="0.2115" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout-night/food_menu_item.xml" value="0.33" />
-        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout-sw375dp/activity_dashboard.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout-sw375dp/activity_dashboard.xml" value="0.22" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout-sw600dp/food_menu_item.xml" value="0.153125" />
-        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout-xhdpi/fragment_dashboard_fragment.xml" value="0.5" />
-        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/activity_dashboard.xml" value="0.49" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout-xhdpi/activity_dashboard.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout-xhdpi/fragment_dashboard_fragment.xml" value="0.14" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout-xxhdpi/activity_dashboard.xml" value="0.5" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout-xxhdpi/fragment_dashboard_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/activity_dashboard.xml" value="0.9" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/activity_explore_nalanda.xml" value="0.49" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/activity_story_view.xml" value="0.25" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/activity_user_login.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/activity_user_registration.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/dashboard_story_item.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/food_menu_item.xml" value="0.33" />
-        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_dashboard_fragment.xml" value="0.22" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_dashboard_fragment.xml" value="0.75" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_default_dashboard.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_food_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_explore_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_food_fragment.xml" value="0.25" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_laundry.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_my_room_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_transport.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/image_picker_item.xml" value="0.203125" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/spinner_dropdown_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/spinner_item.xml" value="0.203125" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/transport_schedule_item.xml" value="0.33" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1455" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1625" />
       </map>
     </option>
   </component>

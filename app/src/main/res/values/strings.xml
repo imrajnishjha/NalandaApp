@@ -22,6 +22,9 @@
     <string name="gaming_room">#Gaming_Room</string>
     <string name="what_s_happening">What\'s happening</string>
     <string name="laundry_services">Laundry Services</string>
+    <string name="choose_photo">Choose photo</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
 
     <string-array name="male_female_str_array">
         <item>Male</item>
