@@ -10,6 +10,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
+
+import java.util.HashMap;
 
 public class SelectHostel extends AppCompatActivity {
 
@@ -105,6 +110,28 @@ public class SelectHostel extends AppCompatActivity {
         selected.setBackground(ContextCompat.getDrawable(SelectHostel.this,R.drawable.button_style_more_curve));
         other1.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(SelectHostel.this,R.color.seat_no_white_background)));
         other2.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(SelectHostel.this,R.color.seat_no_white_background)));
+
+    }
+
+    //after successful payment send data to database
+    public void regComplete(Intent intent, DatabaseReference registrationRef){
+        HashMap<String,Object> regData = new HashMap<>();
+        regData.put("name",intent.getStringExtra("name"));
+        regData.put("email",intent.getStringExtra("email"));
+        regData.put("phoneNo",intent.getStringExtra("phoneNo"));
+        regData.put("address",intent.getStringExtra("address"));
+        regData.put("university",intent.getStringExtra("university"));
+        regData.put("gender",intent.getStringExtra("gender"));
+        regData.put("state",intent.getStringExtra("state"));
+        regData.put("city",intent.getStringExtra("city"));
+        regData.put("hostel",selectedHostel);
+        regData.put("seater",seater);
+
+        registrationRef.updateChildren(regData).addOnSuccessListener(s->{
+            Toast.makeText(SelectHostel.this, "Registration successful", Toast.LENGTH_SHORT).show();
+        }).addOnFailureListener(fail->{
+            Toast.makeText(SelectHostel.this, "Please try again", Toast.LENGTH_SHORT).show();
+        });
 
     }
 }

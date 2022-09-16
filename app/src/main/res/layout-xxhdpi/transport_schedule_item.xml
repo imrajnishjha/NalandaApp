@@ -26,8 +26,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/transport_schedule_item_driver_iv_holder_cv"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 app:cardBackgroundColor="#334CCB9E"
@@ -54,7 +54,7 @@
                 android:fontFamily="@font/inter_regular"
                 android:text="Driver"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="10sp"
                 app:layout_constraintStart_toEndOf="@id/transport_schedule_item_driver_iv_holder_cv"
                 app:layout_constraintTop_toTopOf="@id/transport_schedule_item_driver_iv_holder_cv"
                 tools:ignore="HardcodedText" />
@@ -65,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_regular"
                 android:text="Rajib Kumar"
+                android:textSize="12sp"
                 android:textColor="@color/grey"
                 app:layout_constraintStart_toStartOf="@id/transport_schedule_item_driver_tv"
                 app:layout_constraintTop_toBottomOf="@id/transport_schedule_item_driver_tv" />
@@ -75,6 +76,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/inter_regular"
                 android:text="Timing"
+                android:textSize="12sp"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@id/transport_schedule_item_driver_iv_holder_cv"
                 app:layout_constraintTop_toBottomOf="@id/transport_schedule_item_driver_iv_holder_cv"
@@ -87,6 +89,7 @@
                 android:layout_marginStart="8dp"
                 android:fontFamily="@font/inter_regular"
                 android:text="11:30am"
+                android:textSize="12sp"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toEndOf="@id/transport_schedule_item_timing_txt"
                 app:layout_constraintTop_toBottomOf="@id/transport_schedule_item_driver_iv_holder_cv" />
@@ -131,6 +134,7 @@
                         android:text="Set Reminder"
                         android:layout_gravity="center"
                         android:gravity="center"
+                        android:textSize="12sp"
                         android:fontFamily="@font/poppins_regular"
                         android:textColor="@color/white"/>
                 </LinearLayout>
@@ -138,8 +142,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/transport_schedule_item_call_icon"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintStart_toStartOf="@id/transport_schedule_item_set_reminder_cv"
                 app:layout_constraintTop_toBottomOf="@id/transport_schedule_item_set_reminder_cv"
@@ -158,10 +162,10 @@
                 android:id="@+id/transport_schedule_item_driver_phone_number_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="11sp"
+                android:textColor="@color/black"
                 android:autoLink="phone"
                 android:linksClickable="true"
-                android:textColor="@color/black"
                 app:layout_constraintStart_toEndOf="@id/transport_schedule_item_call_icon"
                 app:layout_constraintTop_toTopOf="@id/transport_schedule_item_call_icon"
                 app:layout_constraintBottom_toBottomOf="@id/transport_schedule_item_call_icon"

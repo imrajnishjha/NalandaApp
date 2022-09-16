@@ -61,6 +61,8 @@
             </intent-filter>
         </activity>
 
+        <receiver android:name=".RemainderReceiver"/>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

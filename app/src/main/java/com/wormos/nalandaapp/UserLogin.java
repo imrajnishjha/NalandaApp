@@ -74,11 +74,10 @@ public class UserLogin extends AppCompatActivity {
                         startActivity(new Intent(UserLogin.this,Dashboard.class).putExtra("userEmail",login_email.replaceAll("\\.","%7")));
                         finish();
                         Toast.makeText(UserLogin.this, "You are logged in!", Toast.LENGTH_SHORT).show();
-                        progressbar.setVisibility(View.GONE);
                     } else {
                         Toast.makeText(UserLogin.this, Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
-                        progressbar.setVisibility(View.GONE);
                     }
+                    progressbar.setVisibility(View.GONE);
                 }
             });
         }

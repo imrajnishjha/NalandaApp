@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -27,6 +29,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,10 +52,11 @@ public class Dashboard extends AppCompatActivity {
     BubbleTabBar bottomNavBar;
     ImageView userProfile;
     Uri profileUri;
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Students");
     StorageReference storageRef = FirebaseStorage.getInstance().getReference("/Profile Picture");
     String userEmailConverted;
+    ProgressBar profilePhotoUpdateProgress;
 
 
 
@@ -64,6 +68,7 @@ public class Dashboard extends AppCompatActivity {
         //initialization
         bottomNavBar = findViewById(R.id.bottom_nav_Bar);
         userProfile = findViewById(R.id.dashboard_profile_photo);
+        profilePhotoUpdateProgress = findViewById(R.id.dashboard_profile_photo_progressBar);
         userEmailConverted = Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail()).replaceAll("\\.","%7");
 
         //methodology
@@ -160,24 +165,29 @@ public class Dashboard extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == 0) {
             profileUri = data.getData();
-            userProfile.setImageURI(profileUri);
-            uploadImageToFirebase(profileUri,storageRef,userRef.child(userEmailConverted));
+            uploadImageToFirebase(profileUri,storageRef,userRef.child(userEmailConverted),userProfile,profilePhotoUpdateProgress);
         } else if (resultCode == RESULT_OK && requestCode == 1) {
             profileUri = data.getData();
-            userProfile.setImageURI(profileUri);
-            uploadImageToFirebase(profileUri,storageRef,userRef.child(userEmailConverted));
+            uploadImageToFirebase(profileUri,storageRef,userRef.child(userEmailConverted),userProfile,profilePhotoUpdateProgress);
         }
     }
 
-    //Uploading Image to FirebaseFunction
-    public static void uploadImageToFirebase(Uri ImageUri, StorageReference storageRef, DatabaseReference rdbRef){
-        storageRef.putFile(ImageUri).addOnSuccessListener(taskSnapshot -> {
-            storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                HashMap<String,Object> userMap = new HashMap<>();
-                userMap.put("purl",uri.toString());
-                rdbRef.updateChildren(userMap);
+    //Uploading Image to FirebaseStorage and Update the corresponding RealtimeDB
+
+    public static void uploadImageToFirebase(Uri ImageUri, StorageReference storageRef, DatabaseReference rdbRef,ImageView imageView,ProgressBar progressBar){
+        progressBar.setVisibility(View.VISIBLE);
+        storageRef.putFile(ImageUri).addOnSuccessListener(taskSnapshot -> storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            HashMap<String,Object> userMap = new HashMap<>();
+            userMap.put("purl",uri.toString());
+            rdbRef.updateChildren(userMap).addOnCompleteListener(task -> {
+               if(task.isSuccessful()){
+                   imageView.setImageURI(ImageUri);
+               } else {
+                   Toast.makeText(imageView.getContext(), Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+               }
+               progressBar.setVisibility(View.GONE);
             });
-        });
+        }));
 
     }
 

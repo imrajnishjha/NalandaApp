@@ -27,6 +27,7 @@
     <string name="gallery">Gallery</string>
 
     <string-array name="male_female_str_array">
+        <item>Gender</item>
         <item>Male</item>
         <item>Female</item>
     </string-array>

@@ -37,8 +37,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/dashboard_profile_photo"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="15dp"
         android:src="@drawable/chat_profile"
@@ -47,14 +47,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dashboard_nalanda_logo_and_name_ll" />
 
+    <ProgressBar
+        android:id="@+id/dashboard_profile_photo_progressBar"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:visibility="gone"
+        android:backgroundTint="@color/text_grey"
+        app:layout_constraintTop_toTopOf="@id/dashboard_profile_photo"
+        app:layout_constraintStart_toStartOf="@id/dashboard_profile_photo"
+        app:layout_constraintEnd_toEndOf="@id/dashboard_profile_photo"
+        app:layout_constraintBottom_toBottomOf="@id/dashboard_profile_photo"/>
+
     <ImageView
         android:id="@+id/dashboard_notification_icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/black"
         android:importantForAccessibility="no"
-        android:src="@drawable/bell_icon"
+        android:src="@drawable/notification_icon"
         app:layout_constraintBottom_toBottomOf="@id/dashboard_profile_photo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/dashboard_profile_photo" />

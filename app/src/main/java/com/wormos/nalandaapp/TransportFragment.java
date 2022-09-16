@@ -67,8 +67,8 @@ public class TransportFragment extends Fragment {
     }
 
     private void setCabOption() {
-        transportFragmentBusBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.greyed_rounded_btn));
-        transportFragmentCabBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.light_blue_rounded_btn));
+        transportFragmentBusBtn.setBackgroundDrawable(ContextCompat.getDrawable(fragmentView.getContext(),R.drawable.greyed_rounded_btn));
+        transportFragmentCabBtn.setBackgroundDrawable(ContextCompat.getDrawable(fragmentView.getContext(),R.drawable.light_blue_rounded_btn));
 
         //Firebase Recycler option for bus schedule
         options = new FirebaseRecyclerOptions.Builder<TransportScheduleModel>()
@@ -82,8 +82,8 @@ public class TransportFragment extends Fragment {
     }
 
     private void setBusOption() {
-        transportFragmentCabBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.greyed_rounded_btn));
-        transportFragmentBusBtn.setBackgroundDrawable(getResources().getDrawable(R.drawable.light_blue_rounded_btn));
+        transportFragmentCabBtn.setBackgroundDrawable(ContextCompat.getDrawable(fragmentView.getContext(),R.drawable.greyed_rounded_btn));
+        transportFragmentBusBtn.setBackgroundDrawable(ContextCompat.getDrawable(fragmentView.getContext(),R.drawable.light_blue_rounded_btn));
 
         //Firebase Recycler option for bus schedule
         options = new FirebaseRecyclerOptions.Builder<TransportScheduleModel>()

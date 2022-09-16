@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -19,6 +21,8 @@ public class UserRegistration extends AppCompatActivity {
     Spinner registrationMaleFemaleSpinner, registrationStatesSpinner, registrationCitiesSpinner;
     String selectedState;
     ArrayAdapter<CharSequence> citiesSpinnerAdapter;
+    EditText userName,userEmail,userPhoneNo,userAddress,userUniversity;
+    CheckBox regTerms;
 
 
     @Override
@@ -33,8 +37,18 @@ public class UserRegistration extends AppCompatActivity {
         registrationMaleFemaleSpinner = findViewById(R.id.registration_male_female_spinner);
         registrationStatesSpinner = findViewById(R.id.registration_states_spinner);
         registrationCitiesSpinner = findViewById(R.id.registration_cities_spinner);
+        userName = findViewById(R.id.registration_full_name_edtTxt);
+        userEmail = findViewById(R.id.registration_email_address_edtTxt);
+        userPhoneNo = findViewById(R.id.registration_phone_number_edtTxt);
+        userAddress = findViewById(R.id.registration_address_edtTxt);
+        userUniversity = findViewById(R.id.registration_college_name_edtTxt);
+        regTerms = findViewById(R.id.registration_terms_and_condition_cb);
+
 
         //Methodology
+
+        //send data to next avtivity
+
         //Array adapters for spinners
         ArrayAdapter<CharSequence> maleFemaleAdapter = ArrayAdapter.createFromResource(this,
                 R.array.male_female_str_array, R.layout.spinner_item);
@@ -60,7 +74,7 @@ public class UserRegistration extends AppCompatActivity {
 
         registrationBackBtn.setOnClickListener(view -> finish());
 
-        continueRegBtn.setOnClickListener(view -> startActivity(new Intent(this, SelectHostel.class)));
+        continueRegBtn.setOnClickListener(view -> sendData());
 
         registrationAlreadyUserTv.setOnClickListener(view -> {
             startActivity(new Intent(UserRegistration.this, UserLogin.class));
@@ -75,7 +89,6 @@ public class UserRegistration extends AppCompatActivity {
             //getting the selected state
             selectedState = registrationStatesSpinner.getSelectedItem().toString();
             switch (selectedState){
-                case"Select Your State": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.cities_default_array, R.layout.spinner_item); break;
                 case"Andaman and Nicobar Islands": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_andaman_and_nicobar_cities, R.layout.spinner_item); break;
                 case"Andhra Pradesh": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_andra_pradesh_cities, R.layout.spinner_item); break;
                 case"Arunachal Pradesh": citiesSpinnerAdapter = ArrayAdapter.createFromResource(getApplicationContext(), R.array.array_arunachal_pradesh_cities, R.layout.spinner_item); break;
@@ -120,5 +133,42 @@ public class UserRegistration extends AppCompatActivity {
         public void onNothingSelected(AdapterView<?> adapterView) {
 
         }
+    }
+
+    //sending data to next class through intent
+    public void sendData(){
+        if(userName.getText().toString().isEmpty()){
+            userName.setError("Name can't be empty");
+            userName.requestFocus();
+        } else if (registrationMaleFemaleSpinner.getSelectedItem().toString().equals("Gender")){
+            ((TextView)registrationMaleFemaleSpinner.getSelectedView()).setError("Select your gender");
+            registrationMaleFemaleSpinner.requestFocus();
+        } else if (userEmail.getText().toString().isEmpty()){
+            userEmail.setError("Email can't be empty");
+            userEmail.requestFocus();
+        } else if (userPhoneNo.getText().toString().isEmpty()){
+            userPhoneNo.setError("Phone no. can't be empty");
+            userPhoneNo.requestFocus();
+        } else if (registrationStatesSpinner.getSelectedItem().toString().equals("Select Your State")){
+            ((TextView)registrationStatesSpinner.getSelectedView()).setError("Select your state");
+            registrationStatesSpinner.requestFocus();
+        } else if (registrationCitiesSpinner.getSelectedItem().toString().equals("Select a city")){
+            ((TextView)registrationCitiesSpinner.getSelectedView()).setError("Select your city");
+            registrationCitiesSpinner.requestFocus();
+        } else if (userAddress.getText().toString().isEmpty()){
+            userAddress.setError("Address can't be empty");
+            userAddress.requestFocus();
+        } else if (userUniversity.getText().toString().isEmpty()){
+            userUniversity.setError("Enter your university");
+            userUniversity.requestFocus();
+        } else {
+            Intent data = new Intent(UserRegistration.this,SelectHostel.class);
+            data.putExtra("name",userName.getText().toString()).putExtra("email",userEmail.getText().toString())
+                    .putExtra("phoneNo",userPhoneNo.getText().toString()).putExtra("address",userAddress.getText().toString())
+                    .putExtra("university",userUniversity.getText().toString()).putExtra("gender",registrationMaleFemaleSpinner.getSelectedItem().toString())
+                    .putExtra("state",registrationStatesSpinner.getSelectedItem().toString()).putExtra("city",registrationCitiesSpinner.getSelectedItem().toString());
+            startActivity(data);
+        }
+
     }
 }
