@@ -11,6 +11,7 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import java.util.Objects;
 
@@ -20,8 +21,11 @@ public class RemainderReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        int color = ContextCompat.getColor(context, R.color.nalanda_blue);
+
         Intent i = new Intent(context,Dashboard.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
         PendingIntent pendingIntent = PendingIntent.getActivity(context,0,i,0);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"nalandaapp");
@@ -32,26 +36,18 @@ public class RemainderReceiver extends BroadcastReceiver {
                     channelId,
                     "Notifications",
                     NotificationManager.IMPORTANCE_HIGH);
-            channel.setDescription("Your booked vehicle will start in 10min");
             mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             mNotificationManager.createNotificationChannel(channel);
-            builder.setSmallIcon(R.drawable.ic_nalanda_icon);
-            builder.setChannelId(channelId);
-            builder.setContentIntent(pendingIntent);
-            builder.setContentTitle("Transport");
-            builder.setContentText("Your booked vehicle has arrived");
-            builder.setAutoCancel(true);
-            builder.setDefaults(NotificationCompat.DEFAULT_ALL);
-            builder.setPriority(Notification.PRIORITY_MAX);
-        }else{
-            builder.setSmallIcon(R.drawable.ic_nalanda_icon);
-            builder.setContentTitle("Transport");
-            builder.setContentTitle("Your booked vehicle has arrived");
-            builder.setAutoCancel(true);
-            builder.setDefaults(NotificationCompat.DEFAULT_ALL);
-            builder.setPriority(NotificationCompat.PRIORITY_MAX);
-            builder.setContentIntent(pendingIntent);
         }
+
+        builder.setSmallIcon(R.drawable.ic_nalanda_icon);
+        builder.setContentTitle("Transport");
+        builder.setContentText("Your booked vehicle has arrived");
+        builder.setAutoCancel(true);
+        builder.setColor(color);
+        builder.setDefaults(NotificationCompat.DEFAULT_ALL);
+        builder.setPriority(NotificationCompat.PRIORITY_MAX);
+        builder.setContentIntent(pendingIntent);
 
 
 

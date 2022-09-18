@@ -19,7 +19,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.messaging.FirebaseMessaging;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class UserLogin extends AppCompatActivity {
@@ -71,6 +75,13 @@ public class UserLogin extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
+                        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(tokenTask -> {
+                            if(tokenTask.isSuccessful()){
+                                String token = tokenTask.getResult();
+                                sendToken(FirebaseDatabase.getInstance().getReference("Student Token"),token,login_email );
+                                notifye(token);
+                            }
+                        });
                         startActivity(new Intent(UserLogin.this,Dashboard.class).putExtra("userEmail",login_email.replaceAll("\\.","%7")));
                         finish();
                         Toast.makeText(UserLogin.this, "You are logged in!", Toast.LENGTH_SHORT).show();
@@ -82,5 +93,16 @@ public class UserLogin extends AppCompatActivity {
             });
         }
 
+    }
+
+    public void sendToken(DatabaseReference databaseReference,String token,String email){
+        HashMap<String,Object> tokenMap = new HashMap<>();
+        tokenMap.put(email.replaceAll("\\.","%7"),token);
+        databaseReference.updateChildren(tokenMap);
+    }
+
+    public void notifye(String key){
+        MyFirebaseNotificationSender notificationSender = new MyFirebaseNotificationSender(key,"Test notification","This is sent by firebase",getBaseContext(),UserLogin.this);
+        notificationSender.SendNotifications();
     }
 }
