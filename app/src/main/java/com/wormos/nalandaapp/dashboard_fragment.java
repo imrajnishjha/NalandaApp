@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 public class dashboard_fragment extends Fragment {
 
     View dView;
-    CardView dashboardTransportCv, dashboardLaundryCv, dashboardHouseKeepingCv, dashboardRepairCv;
+    CardView dashboardTransportCv, dashboardLaundryCv, dashboardServicesCv, dashboardReferCv;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,8 +29,8 @@ public class dashboard_fragment extends Fragment {
         dView = inflater.inflate(R.layout.fragment_dashboard_fragment, container, false);
         dashboardTransportCv = dView.findViewById(R.id.dashboard_transport_cv);
         dashboardLaundryCv = dView.findViewById(R.id.dashboard_laundry_cv);
-        dashboardHouseKeepingCv = dView.findViewById(R.id.dashboard_house_keeping_cv);
-        dashboardRepairCv = dView.findViewById(R.id.dashboard_repair_cv);
+        dashboardServicesCv = dView.findViewById(R.id.dashboard_services_cv);
+        dashboardReferCv = dView.findViewById(R.id.dashboard_refer_cv);
 
         //methodology
 
@@ -48,12 +48,14 @@ public class dashboard_fragment extends Fragment {
             fragmentInflater("Laundry");
         });
 
-        dashboardHouseKeepingCv.setOnClickListener(view -> {
-            selectSubMenu(dashboardHouseKeepingCv);
+        dashboardServicesCv.setOnClickListener(view -> {
+            selectSubMenu(dashboardServicesCv);
+            fragmentInflater("Services");
         });
 
-        dashboardRepairCv.setOnClickListener(view -> {
-            selectSubMenu(dashboardRepairCv);
+        dashboardReferCv.setOnClickListener(view -> {
+            selectSubMenu(dashboardReferCv);
+            fragmentInflater("Refer");
         });
 
 
@@ -68,8 +70,8 @@ public class dashboard_fragment extends Fragment {
     private void greyOutAllSubMenuCv() {
         dashboardTransportCv.setCardBackgroundColor(getResources().getColor(R.color.ligh_grey));
         dashboardLaundryCv.setCardBackgroundColor(getResources().getColor(R.color.ligh_grey));
-        dashboardHouseKeepingCv.setCardBackgroundColor(getResources().getColor(R.color.ligh_grey));
-        dashboardRepairCv.setCardBackgroundColor(getResources().getColor(R.color.ligh_grey));
+        dashboardServicesCv.setCardBackgroundColor(getResources().getColor(R.color.ligh_grey));
+        dashboardReferCv.setCardBackgroundColor(getResources().getColor(R.color.ligh_grey));
     }
 
     public void fragmentInflater(String submenuChoice){
@@ -78,14 +80,11 @@ public class dashboard_fragment extends Fragment {
             case "Laundry":
                 transaction.replace(R.id.dashboard_fragment_frame, new laundry());
                 break;
-            case "My Room":
-                transaction.replace(R.id.dashboard_fragment_frame, new my_room_fragment());
+            case "Refer":
+                transaction.replace(R.id.dashboard_fragment_frame, new ReferFragment());
                 break;
-            case "Dashboard":
-                transaction.replace(R.id.dashboard_fragment_frame, new dashboard_fragment());
-                break;
-            case "Explore":
-                transaction.replace(R.id.dashboard_fragment_frame, new explore_fragment());
+            case "Services":
+                transaction.replace(R.id.dashboard_fragment_frame, new ServicesFragment());
                 break;
             case "Transport":
                 transaction.replace(R.id.dashboard_fragment_frame, new TransportFragment());

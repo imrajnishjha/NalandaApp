@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".refer_fragment">
+    tools:context=".ProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Refer Fragment"
-        android:textColor="@color/black" />
+        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

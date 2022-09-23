@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -47,7 +48,7 @@ public class UserRegistration extends AppCompatActivity {
 
         //Methodology
 
-        //send data to next avtivity
+        //send data to next activity
 
         //Array adapters for spinners
         ArrayAdapter<CharSequence> maleFemaleAdapter = ArrayAdapter.createFromResource(this,
@@ -161,6 +162,9 @@ public class UserRegistration extends AppCompatActivity {
         } else if (userUniversity.getText().toString().isEmpty()){
             userUniversity.setError("Enter your university");
             userUniversity.requestFocus();
+        }else if (!regTerms.isChecked()){
+            Toast.makeText(UserRegistration.this, "Please agree to terms and condition", Toast.LENGTH_SHORT).show();
+            regTerms.requestFocus();
         } else {
             Intent data = new Intent(UserRegistration.this,SelectHostel.class);
             data.putExtra("name",userName.getText().toString()).putExtra("email",userEmail.getText().toString())

@@ -71,7 +71,7 @@
             app:cardBackgroundColor="#F6F6F6"
             app:cardCornerRadius="4dp"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@+id/dashboard_house_keeping_cv"
+            app:layout_constraintEnd_toStartOf="@+id/dashboard_services_cv"
             app:layout_constraintHorizontal_bias="0.5"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
@@ -106,13 +106,13 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/dashboard_house_keeping_cv"
+            android:id="@+id/dashboard_services_cv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             app:cardBackgroundColor="#F6F6F6"
             app:cardCornerRadius="4dp"
             app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toStartOf="@+id/dashboard_repair_cv"
+            app:layout_constraintEnd_toStartOf="@+id/dashboard_refer_cv"
             app:layout_constraintHorizontal_bias="0.5"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
@@ -128,15 +128,16 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
+                    android:padding="3dp"
                     android:importantForAccessibility="no"
-                    android:src="@drawable/housekeeping_icon" />
+                    android:src="@drawable/repair_icon" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/poppins_regular"
                     android:gravity="center"
-                    android:text="House Keeping"
+                    android:text="Services"
                     android:textColor="@color/black"
                     android:textSize="9sp"
                     tools:ignore="HardcodedText" />
@@ -146,7 +147,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/dashboard_repair_cv"
+            android:id="@+id/dashboard_refer_cv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             app:cardBackgroundColor="#F6F6F6"
@@ -156,7 +157,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            app:layout_constraintStart_toEndOf="@+id/dashboard_house_keeping_cv"
+            app:layout_constraintStart_toEndOf="@+id/dashboard_services_cv"
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
@@ -169,14 +170,14 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:importantForAccessibility="no"
-                    android:src="@drawable/repair_icon" />
+                    android:src="@drawable/refer_icon" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/poppins_regular"
                     android:gravity="center"
-                    android:text="Repair"
+                    android:text="Refer"
                     android:textColor="@color/black"
                     android:textSize="9sp"
                     tools:ignore="HardcodedText" />

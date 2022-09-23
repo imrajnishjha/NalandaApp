@@ -27,9 +27,9 @@
         android:title="@string/explore"/>
 
     <item
-        android:id="@+id/refer_icon"
-        android:icon="@drawable/refer_icon"
+        android:id="@+id/profile_icon"
+        android:icon="@drawable/profile_logo"
         android:color="@color/nav_chip"
-        android:title="@string/refer"/>
+        android:title="@string/profile"/>
 
 </menu>

@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,12 +16,14 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.HashMap;
+import java.util.Locale;
 
 public class SelectHostel extends AppCompatActivity {
 
     int seater=0;
     String selectedHostel=null;
-    TextView oneSeater,twoSeater,threeSeater,fourSeater;
+    TextView oneSeater,twoSeater,threeSeater,fourSeater,chanakayaHostelTV,dronaHostelTV,collegeHostelTV,chanakayaLocationTV
+            ,dronaLocationTV,collegeLocationTV;
     ImageView chanakayaHostel,dronaHostel,collegeHostel;
     AppCompatButton selectDetailBackBtn;
     CardView chanakayaDetail,dronaDetail,collegeDetail,selectHostelPayBtn;
@@ -35,7 +38,7 @@ public class SelectHostel extends AppCompatActivity {
         twoSeater = findViewById(R.id.select_2_seater);
         threeSeater = findViewById(R.id.select_3_seater);
         fourSeater = findViewById(R.id.select_4_seater);
-        chanakayaHostel = findViewById(R.id.select_chanakya_hostel);
+        chanakayaHostel = findViewById(R.id.select_chanakaya_hostel);
         dronaHostel = findViewById(R.id.select_drona_hostel);
         collegeHostel = findViewById(R.id.select_college_hostel);
         selectDetailBackBtn = findViewById(R.id.select_hostel_back_btn);
@@ -43,8 +46,22 @@ public class SelectHostel extends AppCompatActivity {
         dronaDetail= findViewById(R.id.drona_info);
         collegeDetail = findViewById(R.id.college_info);
         selectHostelPayBtn = findViewById(R.id.select_hostel_pay_btn);
+        chanakayaHostelTV = findViewById(R.id.select_chanakaya_hostel_text);
+        dronaHostelTV = findViewById(R.id.select_drona_hostel_text);
+        collegeHostelTV= findViewById(R.id.select_college_hostel_text);
+        chanakayaLocationTV = findViewById(R.id.select_chanakaya_hostel_location);
+        dronaLocationTV = findViewById(R.id.select_drona_hostel_location);
+        collegeLocationTV = findViewById(R.id.select_college_hostel_location);
 
 //Methodology
+
+        //setting the girl hostel
+        Log.d("gender", "onCreate: "+getIntent().getStringExtra("gender"));
+        if(getIntent().getStringExtra("gender").equals("Female")){
+            femaleHostel();
+        }
+
+
         selectHostelPayBtn.setOnClickListener(view -> startActivity(new Intent(SelectHostel.this, Dashboard.class)));
 
         selectDetailBackBtn.setOnClickListener(view -> finish());
@@ -133,5 +150,13 @@ public class SelectHostel extends AppCompatActivity {
             Toast.makeText(SelectHostel.this, "Please try again", Toast.LENGTH_SHORT).show();
         });
 
+    }
+
+    //convert male hostel into female hostel if selected gender is female
+    public void femaleHostel(){
+        String gargi = "Gargi";
+        String vanya = "Vanya";
+        chanakayaHostelTV.setText(gargi);
+        dronaHostelTV.setText(vanya);
     }
 }

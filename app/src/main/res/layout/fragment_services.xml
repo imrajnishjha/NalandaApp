@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/different_white"
+    android:fillViewport="true"
+    tools:context=".ServicesFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/services_text"
+            android:textColor="@color/different_black"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:textStyle="bold"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:text="@string/services"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:id="@+id/services_wifi_text"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="23dp"
+            android:gravity="center|start"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingStart="35dp"
+            android:paddingEnd="8dp"
+            android:text="Wi-Fi"
+            android:textColor="@color/different_black"
+            android:layout_marginEnd="23dp"
+            android:fontFamily="@font/poppins_regular"
+            android:background="@drawable/rounded_black_textview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/services_text"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/wifi_icon"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="@+id/services_wifi_text"
+            app:layout_constraintTop_toTopOf="@id/services_wifi_text"
+            app:layout_constraintBottom_toBottomOf="@id/services_wifi_text"
+            android:contentDescription="@string/todo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:id="@+id/services_ac_text"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="23dp"
+            android:gravity="center|start"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingStart="35dp"
+            android:paddingEnd="8dp"
+            android:text="A-C"
+            android:textColor="@color/different_black"
+            android:layout_marginEnd="23dp"
+            android:fontFamily="@font/poppins_regular"
+            android:background="@drawable/rounded_black_textview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/services_wifi_text"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ac_icon"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="@+id/services_ac_text"
+            app:layout_constraintTop_toTopOf="@id/services_ac_text"
+            app:layout_constraintBottom_toBottomOf="@id/services_ac_text"
+            android:contentDescription="@string/todo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:id="@+id/services_housekeeping_text"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="23dp"
+            android:gravity="center|start"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingStart="35dp"
+            android:paddingEnd="8dp"
+            android:text="Housekeeping"
+            android:textColor="@color/different_black"
+            android:layout_marginEnd="23dp"
+            android:fontFamily="@font/poppins_regular"
+            android:background="@drawable/rounded_black_textview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/services_ac_text"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/housekeeping_icon"
+            android:layout_marginStart="3dp"
+            app:layout_constraintStart_toStartOf="@+id/services_housekeeping_text"
+            app:layout_constraintTop_toTopOf="@id/services_housekeeping_text"
+            app:layout_constraintBottom_toBottomOf="@id/services_housekeeping_text"
+            android:contentDescription="@string/todo" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:id="@+id/services_other_text"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="23dp"
+            android:gravity="center|start"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:paddingStart="35dp"
+            android:paddingEnd="8dp"
+            android:text="Other"
+            android:textColor="@color/different_black"
+            android:layout_marginEnd="23dp"
+            android:fontFamily="@font/poppins_regular"
+            android:background="@drawable/rounded_black_textview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/services_housekeeping_text"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/repair_icon"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="@+id/services_other_text"
+            app:layout_constraintTop_toTopOf="@id/services_other_text"
+            app:layout_constraintBottom_toBottomOf="@id/services_other_text"
+            android:contentDescription="@string/todo" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/services_instant_support_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:cardCornerRadius="5dp"
+            android:backgroundTint="@color/nalanda_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/services_other_text"
+            tools:ignore="HardcodedText" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/white"
+                android:paddingTop="5dp"
+                android:textSize="14sp"
+                android:paddingBottom="5dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:text="Instant Support"/>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</ScrollView>
