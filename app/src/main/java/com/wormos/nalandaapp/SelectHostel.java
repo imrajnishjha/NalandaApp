@@ -155,8 +155,8 @@ public class SelectHostel extends AppCompatActivity {
     //convert male hostel into female hostel if selected gender is female
     public void femaleHostel(){
         String gargi = "Gargi";
-        String vanya = "Vanya";
-        chanakayaHostelTV.setText(gargi);
-        dronaHostelTV.setText(vanya);
+        String queens = "Queens";
+        collegeHostelTV.setText(gargi);
+        dronaHostelTV.setText(queens);
     }
 }
