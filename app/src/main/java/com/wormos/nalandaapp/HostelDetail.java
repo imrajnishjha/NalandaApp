@@ -26,15 +26,25 @@ public class HostelDetail extends AppCompatActivity {
         hostelDetailBackBtn.setOnClickListener(view -> finish());
 
         switch (HostelInfo) {
-            case "chanakaya":
+            case "Chanakaya":
                 hostelNameTV.setText("Chanakaya Hostel");
                 break;
-            case "drona":
+            case "Drona":
                 hostelNameTV.setText("Drona Hostel");
                 break;
-            case "college":
+            case "College":
                 hostelNameTV.setText("College Hostel");
                 break;
+            case "Vanya":
+                hostelNameTV.setText("Vanya Hostel");
+                break;
+            case "Queens":
+                hostelNameTV.setText("Queens Hostel");
+                break;
+            case "Gargi":
+                hostelNameTV.setText("Gargi Hostel");
+                break;
+
         }
 
 

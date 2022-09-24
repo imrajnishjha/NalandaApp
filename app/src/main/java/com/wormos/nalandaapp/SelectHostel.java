@@ -9,6 +9,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,10 +24,11 @@ public class SelectHostel extends AppCompatActivity {
     int seater=0;
     String selectedHostel=null;
     TextView oneSeater,twoSeater,threeSeater,fourSeater,chanakayaHostelTV,dronaHostelTV,collegeHostelTV,chanakayaLocationTV
-            ,dronaLocationTV,collegeLocationTV;
-    ImageView chanakayaHostel,dronaHostel,collegeHostel;
+            ,dronaLocationTV,collegeLocationTV,vanyaHostelTV,vanyaLocationTV;
+    ImageView chanakayaHostel,dronaHostel,collegeHostel,vanyaHostel,vanyaLocationIcon;
     AppCompatButton selectDetailBackBtn;
-    CardView chanakayaDetail,dronaDetail,collegeDetail,selectHostelPayBtn;
+    CardView chanakayaDetail,dronaDetail,collegeDetail,vanyaDetail,selectHostelPayBtn;
+    boolean isFemale= false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +43,19 @@ public class SelectHostel extends AppCompatActivity {
         chanakayaHostel = findViewById(R.id.select_chanakaya_hostel);
         dronaHostel = findViewById(R.id.select_drona_hostel);
         collegeHostel = findViewById(R.id.select_college_hostel);
+        vanyaHostel = findViewById(R.id.select_vanya_hostel);
         selectDetailBackBtn = findViewById(R.id.select_hostel_back_btn);
         chanakayaDetail = findViewById(R.id.chanakaya_info);
         dronaDetail= findViewById(R.id.drona_info);
         collegeDetail = findViewById(R.id.college_info);
+        vanyaDetail = findViewById(R.id.vanya_info);
         selectHostelPayBtn = findViewById(R.id.select_hostel_pay_btn);
         chanakayaHostelTV = findViewById(R.id.select_chanakaya_hostel_text);
         dronaHostelTV = findViewById(R.id.select_drona_hostel_text);
         collegeHostelTV= findViewById(R.id.select_college_hostel_text);
+        vanyaHostelTV = findViewById(R.id.select_vanya_hostel_text);
+        vanyaLocationTV = findViewById(R.id.select_vanya_hostel_location);
+        vanyaLocationIcon = findViewById(R.id.select_vanya_hostel_icon);
         chanakayaLocationTV = findViewById(R.id.select_chanakaya_hostel_location);
         dronaLocationTV = findViewById(R.id.select_drona_hostel_location);
         collegeLocationTV = findViewById(R.id.select_college_hostel_location);
@@ -59,10 +66,11 @@ public class SelectHostel extends AppCompatActivity {
         Log.d("gender", "onCreate: "+getIntent().getStringExtra("gender"));
         if(getIntent().getStringExtra("gender").equals("Female")){
             femaleHostel();
+            isFemale =true;
         }
 
 
-        selectHostelPayBtn.setOnClickListener(view -> startActivity(new Intent(SelectHostel.this, Dashboard.class)));
+        //selectHostelPayBtn.setOnClickListener(view -> );
 
         selectDetailBackBtn.setOnClickListener(view -> finish());
 
@@ -84,30 +92,39 @@ public class SelectHostel extends AppCompatActivity {
         });
 
         chanakayaHostel.setOnClickListener(view -> {
-            HostelSelector(chanakayaHostel,dronaHostel,collegeHostel);
-            selectedHostel="chanakaya";
+            HostelSelector(chanakayaHostel,dronaHostel,collegeHostel,vanyaHostel);
+            selectedHostel=chanakayaHostelTV.getText().toString();
         });
 
         dronaHostel.setOnClickListener(view -> {
-            HostelSelector(dronaHostel,chanakayaHostel,collegeHostel);
-            selectedHostel="drona";
+            HostelSelector(dronaHostel,chanakayaHostel,collegeHostel,vanyaHostel);
+            selectedHostel=dronaHostelTV.getText().toString();
         });
 
         collegeHostel.setOnClickListener(view -> {
-            HostelSelector(collegeHostel,chanakayaHostel,dronaHostel);
-            selectedHostel="college";
+            HostelSelector(collegeHostel,chanakayaHostel,dronaHostel,vanyaHostel);
+            selectedHostel=collegeHostelTV.getText().toString();
+        });
+
+        vanyaHostel.setOnClickListener(view -> {
+            HostelSelector(vanyaHostel,collegeHostel,chanakayaHostel,dronaHostel);
+            selectedHostel=vanyaHostelTV.getText().toString();
         });
 
         collegeDetail.setOnClickListener(view ->
-                startActivity(new Intent(this,HostelDetail.class).putExtra("HostelName","college"))
+                startActivity(new Intent(this,HostelDetail.class).putExtra("HostelName",collegeHostelTV.getText().toString()))
         );
 
         chanakayaDetail.setOnClickListener(view ->
-                startActivity(new Intent(this,HostelDetail.class).putExtra("HostelName","chanakaya"))
+                startActivity(new Intent(this,HostelDetail.class).putExtra("HostelName",chanakayaHostelTV.getText().toString()))
         );
 
         dronaDetail.setOnClickListener(view ->
-                startActivity(new Intent(this,HostelDetail.class).putExtra("HostelName","drona"))
+                startActivity(new Intent(this,HostelDetail.class).putExtra("HostelName",dronaHostelTV.getText().toString()))
+        );
+
+        vanyaDetail.setOnClickListener(view ->
+                startActivity(new Intent(this,HostelDetail.class).putExtra("HostelName",vanyaHostelTV.getText().toString()))
         );
 
     }
@@ -122,11 +139,12 @@ public class SelectHostel extends AppCompatActivity {
 
     }
     //Different Type of Hostel Selection
-    public void HostelSelector(ImageView selected, ImageView other1, ImageView other2){
+    public void HostelSelector(ImageView selected, ImageView other1, ImageView other2,ImageView other3){
         selected.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(SelectHostel.this,R.color.seat_no_background_tint)));
         selected.setBackground(ContextCompat.getDrawable(SelectHostel.this,R.drawable.button_style_more_curve));
         other1.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(SelectHostel.this,R.color.seat_no_white_background)));
         other2.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(SelectHostel.this,R.color.seat_no_white_background)));
+        other3.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(SelectHostel.this,R.color.seat_no_white_background)));
 
     }
 
@@ -158,5 +176,10 @@ public class SelectHostel extends AppCompatActivity {
         String queens = "Queens";
         collegeHostelTV.setText(gargi);
         dronaHostelTV.setText(queens);
+        vanyaHostel.setVisibility(View.GONE);
+        vanyaDetail.setVisibility(View.GONE);
+        vanyaLocationTV.setVisibility(View.GONE);
+        vanyaHostelTV.setVisibility(View.GONE);
+        vanyaLocationIcon.setVisibility(View.GONE);
     }
 }
