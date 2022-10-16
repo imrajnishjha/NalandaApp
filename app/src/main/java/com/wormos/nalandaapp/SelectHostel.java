@@ -70,7 +70,15 @@ public class SelectHostel extends AppCompatActivity {
         }
 
 
-        //selectHostelPayBtn.setOnClickListener(view -> );
+        selectHostelPayBtn.setOnClickListener(view -> {
+            if(selectedHostel==null){
+                Toast.makeText(this, "Select a hostel", Toast.LENGTH_SHORT).show();
+            } else if(seater== 0){
+                Toast.makeText(this, "Select room capacity", Toast.LENGTH_SHORT).show();
+            }else{
+                startActivity(new Intent(this,PaymentOptions.class));
+            }
+        });
 
         selectDetailBackBtn.setOnClickListener(view -> finish());
 

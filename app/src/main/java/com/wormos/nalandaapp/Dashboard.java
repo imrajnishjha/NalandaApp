@@ -55,7 +55,7 @@ public class Dashboard extends AppCompatActivity {
     static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Students");
     StorageReference storageRef = FirebaseStorage.getInstance().getReference("/Profile Picture");
-    String userEmailConverted;
+    static String userEmailConverted= Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail()).replaceAll("\\.","%7");;
     ProgressBar profilePhotoUpdateProgress;
 
 
@@ -69,7 +69,6 @@ public class Dashboard extends AppCompatActivity {
         bottomNavBar = findViewById(R.id.bottom_nav_Bar);
         userProfile = findViewById(R.id.dashboard_profile_photo);
         profilePhotoUpdateProgress = findViewById(R.id.dashboard_profile_photo_progressBar);
-        userEmailConverted = Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail()).replaceAll("\\.","%7");
 
         //methodology
 
@@ -188,6 +187,7 @@ public class Dashboard extends AppCompatActivity {
                progressBar.setVisibility(View.GONE);
             });
         }));
+
 
     }
 

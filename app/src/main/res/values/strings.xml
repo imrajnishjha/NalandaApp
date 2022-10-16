@@ -28,6 +28,11 @@
     <string name="services">Services</string>
     <string name="todo">TODO</string>
     <string name="referandearn">Refer your Friend &amp; Earn</string>
+    <string name="our_story">Our Story</string>
+    <string name="our_value1">Nalanda believes that access to correct living conditions should be a right, not a privilege.</string>
+    <string name="our_value2">Nalanda believes that access to correct living conditions should be a right, not a privilege.</string>
+    <string name="nalanda_promise">Nalanda believes that access to correct living conditions should be a right, not a privilege. We are committed to ensuring that our students have every opportunity to succeed, regardless of their socio-economic background. Part of this commitment is providing safe and affordable accommodation for our students.</string>
+    <string name="our_story_content">Nalanda Living is founded by Mr Rahul Pratap Nagar, who understands the student’s problems around accommodation and committed to offer a solution. He believes that Student community deserves a better lodging and boarding ecosystem in India. The current facilities are either too clumsy and lacks basic requirements of hygiene, comfortable living conditions OR super costly. With concept of Nalanda Living, we want to offer cosy, comfortable and hygienic living at affordable rates.</string>
 
     <string-array name="male_female_str_array">
         <item>Gender</item>

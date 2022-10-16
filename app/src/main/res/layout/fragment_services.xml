@@ -29,8 +29,8 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:id="@+id/services_wifi_text"
+            android:layout_height="40dp"
+            android:id="@+id/services_laundry_text"
             android:layout_marginTop="20dp"
             android:layout_marginStart="23dp"
             android:gravity="center|start"
@@ -38,7 +38,7 @@
             android:paddingBottom="4dp"
             android:paddingStart="35dp"
             android:paddingEnd="8dp"
-            android:text="Wi-Fi"
+            android:text="Laundry"
             android:textColor="@color/different_black"
             android:layout_marginEnd="23dp"
             android:fontFamily="@font/poppins_regular"
@@ -47,19 +47,90 @@
             app:layout_constraintTop_toBottomOf="@id/services_text"
             tools:ignore="HardcodedText" />
 
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/services_laundry_schedule"
+            android:orientation="horizontal"
+            android:layout_marginStart="5dp"
+            app:layout_constraintTop_toBottomOf="@id/services_laundry_text"
+            app:layout_constraintStart_toStartOf="@id/services_laundry_text">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                app:cardCornerRadius="4dp"
+                android:layout_marginTop="-4dp"
+                app:cardBackgroundColor="@color/light_blue">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:backgroundTintMode="src_in"
+                    android:background="@drawable/rounded_transparent_bg"
+                    android:layout_gravity="center"
+                    android:text="Sun"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                app:cardCornerRadius="4dp"
+                android:layout_marginTop="-4dp"
+                android:backgroundTint="#4CCB9E">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Sun"
+                    android:background="@drawable/rounded_transparent_bg"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                app:cardCornerRadius="4dp"
+                android:layout_marginTop="-4dp"
+                app:cardBackgroundColor="@color/white"
+                android:backgroundTint="#A6F83E54">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Sun"
+                    android:background="@drawable/rounded_transparent_bg"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@drawable/wifi_icon"
             android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="@+id/services_wifi_text"
-            app:layout_constraintTop_toTopOf="@id/services_wifi_text"
-            app:layout_constraintBottom_toBottomOf="@id/services_wifi_text"
+            app:layout_constraintStart_toStartOf="@+id/services_laundry_text"
+            app:layout_constraintTop_toTopOf="@id/services_laundry_text"
+            app:layout_constraintBottom_toBottomOf="@id/services_laundry_text"
             android:contentDescription="@string/todo" />
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:id="@+id/services_ac_text"
             android:layout_marginTop="20dp"
             android:layout_marginStart="23dp"
@@ -68,13 +139,66 @@
             android:paddingBottom="4dp"
             android:paddingStart="35dp"
             android:paddingEnd="8dp"
-            android:text="A-C"
+            android:text="A-C Timing"
             android:textColor="@color/different_black"
             android:layout_marginEnd="23dp"
             android:fontFamily="@font/poppins_regular"
             android:background="@drawable/rounded_black_textview"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/services_wifi_text"/>
+            app:layout_constraintTop_toBottomOf="@id/services_laundry_schedule"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/services_ac_schedule"
+            android:orientation="horizontal"
+            android:layout_marginStart="5dp"
+            app:layout_constraintTop_toBottomOf="@id/services_ac_text"
+            app:layout_constraintStart_toStartOf="@id/services_ac_text">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                app:cardCornerRadius="4dp"
+                android:layout_marginTop="-4dp"
+                app:cardBackgroundColor="@color/light_blue">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:backgroundTintMode="src_in"
+                    android:background="@drawable/rounded_transparent_bg"
+                    android:layout_gravity="center"
+                    android:text="Sun"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                app:cardCornerRadius="4dp"
+                android:layout_marginTop="-4dp"
+                android:backgroundTint="#4CCB9E">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Sun"
+                    android:background="@drawable/rounded_transparent_bg"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <ImageView
             android:layout_width="20dp"
@@ -88,7 +212,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
             android:id="@+id/services_housekeeping_text"
             android:layout_marginTop="20dp"
             android:layout_marginStart="23dp"
@@ -103,8 +227,79 @@
             android:fontFamily="@font/poppins_regular"
             android:background="@drawable/rounded_black_textview"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/services_ac_text"
+            app:layout_constraintTop_toBottomOf="@id/services_ac_schedule"
             tools:ignore="HardcodedText" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/services_housekeeping_schedule"
+            android:orientation="horizontal"
+            android:layout_marginStart="5dp"
+            app:layout_constraintTop_toBottomOf="@id/services_housekeeping_text"
+            app:layout_constraintStart_toStartOf="@id/services_housekeeping_text">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                app:cardCornerRadius="4dp"
+                android:layout_marginTop="-4dp"
+                app:cardBackgroundColor="@color/light_blue">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:backgroundTintMode="src_in"
+                    android:background="@drawable/rounded_transparent_bg"
+                    android:layout_gravity="center"
+                    android:text="Sun"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                app:cardCornerRadius="4dp"
+                android:layout_marginTop="-4dp"
+                android:backgroundTint="#4CCB9E">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Sun"
+                    android:background="@drawable/rounded_transparent_bg"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="70dp"
+                android:layout_height="25dp"
+                app:cardCornerRadius="4dp"
+                android:layout_marginTop="-4dp"
+                app:cardBackgroundColor="@color/white"
+                android:backgroundTint="#A6F83E54">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Sun"
+                    android:background="@drawable/rounded_transparent_bg"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="12sp"
+                    android:textStyle="bold"/>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <ImageView
             android:layout_width="30dp"
@@ -116,34 +311,6 @@
             app:layout_constraintBottom_toBottomOf="@id/services_housekeeping_text"
             android:contentDescription="@string/todo" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:id="@+id/services_other_text"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="23dp"
-            android:gravity="center|start"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:paddingStart="35dp"
-            android:paddingEnd="8dp"
-            android:text="Other"
-            android:textColor="@color/different_black"
-            android:layout_marginEnd="23dp"
-            android:fontFamily="@font/poppins_regular"
-            android:background="@drawable/rounded_black_textview"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/services_housekeeping_text"/>
-
-        <ImageView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:src="@drawable/repair_icon"
-            android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="@+id/services_other_text"
-            app:layout_constraintTop_toTopOf="@id/services_other_text"
-            app:layout_constraintBottom_toBottomOf="@id/services_other_text"
-            android:contentDescription="@string/todo" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/services_instant_support_btn"
@@ -154,7 +321,7 @@
             android:backgroundTint="@color/nalanda_blue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/services_other_text"
+            app:layout_constraintTop_toBottomOf="@id/services_housekeeping_schedule"
             tools:ignore="HardcodedText" >
             <TextView
                 android:layout_width="match_parent"
@@ -169,6 +336,7 @@
                 android:text="Instant Support"/>
 
         </androidx.cardview.widget.CardView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
