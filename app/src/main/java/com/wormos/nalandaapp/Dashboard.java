@@ -53,8 +53,8 @@ public class Dashboard extends AppCompatActivity {
     ImageView userProfile;
     Uri profileUri;
     static FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Students");
-    StorageReference storageRef = FirebaseStorage.getInstance().getReference("/Profile Picture");
+    static DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Students");
+    static StorageReference storageRef = FirebaseStorage.getInstance().getReference("/Profile Picture");
     static String userEmailConverted= Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail()).replaceAll("\\.","%7");;
     ProgressBar profilePhotoUpdateProgress;
 
@@ -77,7 +77,7 @@ public class Dashboard extends AppCompatActivity {
         dashboardTrans.commit();
 
         //getting Profile Picture
-        userRef.child(userEmailConverted).addListenerForSingleValueEvent(new ValueEventListener() {
+        userRef.child(userEmailConverted).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String ProfilePurl = Objects.requireNonNull(snapshot.child("purl").getValue()).toString();
@@ -95,41 +95,41 @@ public class Dashboard extends AppCompatActivity {
         });
 
         //getting img from camera
-        userProfile.setOnClickListener(view -> {
-            AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
-            LayoutInflater layoutInflater= getLayoutInflater();
-            View pickImgview = layoutInflater.inflate(R.layout.image_picker_item,null);
-            builder.setCancelable(true);
-            builder.setView(pickImgview);
-            AlertDialog alertDialogImg = builder.create();
-            Window window = alertDialogImg.getWindow();
-            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            WindowManager.LayoutParams wlp = window.getAttributes();
-            wlp.gravity = Gravity.BOTTOM;
-            wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
-            alertDialogImg.show();
-            window.setAttributes(wlp);
-
-            CardView cameraCardView = pickImgview.findViewById(R.id.chooseCamera);
-            CardView galleryCardView = pickImgview.findViewById(R.id.chooseGallery);
-
-            galleryCardView.setOnClickListener(view1 -> {
-                    ImagePicker.with(this)
-                            .galleryOnly()
-                            .crop(1f,1f)
-                            .maxResultSize(720, 1080)
-                            .start(0);
-                    alertDialogImg.dismiss();
-            });
-            cameraCardView.setOnClickListener(view1 -> {
-                ImagePicker.with(this)
-                        .cameraOnly()
-                        .crop(1f,1f)
-                        .maxResultSize(720, 1080)
-                        .start(1);
-                alertDialogImg.dismiss();
-            });
-        });
+//        userProfile.setOnClickListener(view -> {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(Dashboard.this);
+//            LayoutInflater layoutInflater= getLayoutInflater();
+//            View pickImgview = layoutInflater.inflate(R.layout.image_picker_item,null);
+//            builder.setCancelable(true);
+//            builder.setView(pickImgview);
+//            AlertDialog alertDialogImg = builder.create();
+//            Window window = alertDialogImg.getWindow();
+//            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//            WindowManager.LayoutParams wlp = window.getAttributes();
+//            wlp.gravity = Gravity.BOTTOM;
+//            wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+//            alertDialogImg.show();
+//            window.setAttributes(wlp);
+//
+//            CardView cameraCardView = pickImgview.findViewById(R.id.chooseCamera);
+//            CardView galleryCardView = pickImgview.findViewById(R.id.chooseGallery);
+//
+//            galleryCardView.setOnClickListener(view1 -> {
+//                    ImagePicker.with(this)
+//                            .galleryOnly()
+//                            .crop(1f,1f)
+//                            .maxResultSize(720, 1080)
+//                            .start(0);
+//                    alertDialogImg.dismiss();
+//            });
+//            cameraCardView.setOnClickListener(view1 -> {
+//                ImagePicker.with(this)
+//                        .cameraOnly()
+//                        .crop(1f,1f)
+//                        .maxResultSize(720, 1080)
+//                        .start(1);
+//                alertDialogImg.dismiss();
+//            });
+//        });
 
         //bottom navigation implementation
 
@@ -137,19 +137,19 @@ public class Dashboard extends AppCompatActivity {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             Log.d("uhj", "onBubbleClick: " + i);
             switch (i) {
-                case 2131362059:
+                case 2131362068:
                     transaction.replace(R.id.dashboard_fragment_holder, new food_fragment());
                     break;
-                case 2131362274:
+                case 2131362296:
                     transaction.replace(R.id.dashboard_fragment_holder, new my_room_fragment());
                     break;
-                case 2131361958:
+                case 2131361957:
                     transaction.replace(R.id.dashboard_fragment_holder, new dashboard_fragment());
                     break;
-                case 2131362017:
+                case 2131362026:
                     transaction.replace(R.id.dashboard_fragment_holder, new explore_fragment());
                     break;
-                case 2131362252:
+                case 2131362263:
                     transaction.replace(R.id.dashboard_fragment_holder, new ProfileFragment());
                     break;
             }
@@ -159,17 +159,17 @@ public class Dashboard extends AppCompatActivity {
     }
 
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == 0) {
-            profileUri = data.getData();
-            uploadImageToFirebase(profileUri,storageRef,userRef.child(userEmailConverted),userProfile,profilePhotoUpdateProgress);
-        } else if (resultCode == RESULT_OK && requestCode == 1) {
-            profileUri = data.getData();
-            uploadImageToFirebase(profileUri,storageRef,userRef.child(userEmailConverted),userProfile,profilePhotoUpdateProgress);
-        }
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode == RESULT_OK && requestCode == 0) {
+//            profileUri = data.getData();
+//            uploadImageToFirebase(profileUri,storageRef,userRef.child(userEmailConverted),userProfile,profilePhotoUpdateProgress);
+//        } else if (resultCode == RESULT_OK && requestCode == 1) {
+//            profileUri = data.getData();
+//            uploadImageToFirebase(profileUri,storageRef,userRef.child(userEmailConverted),userProfile,profilePhotoUpdateProgress);
+//        }
+//    }
 
     //Uploading Image to FirebaseStorage and Update the corresponding RealtimeDB
 

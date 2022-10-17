@@ -1,64 +1,175 @@
 package com.wormos.nalandaapp;
 
+import static android.app.Activity.RESULT_OK;
+
+import static com.wormos.nalandaapp.Dashboard.storageRef;
+import static com.wormos.nalandaapp.Dashboard.userEmailConverted;
+import static com.wormos.nalandaapp.Dashboard.userRef;
+
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.bumptech.glide.Glide;
+import com.github.dhaval2404.imagepicker.ImagePicker;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
+
+
 public class ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    View view;
+    //declaring views and variables
+    ImageView studentProfilePictureIv;
+    TextView studentProfileNameTv, studentProfileRoomNoTv, studentProfileRoomTypeTv;
+    FirebaseDatabase database;
+    DatabaseReference studentDatabaseReference;
+    FirebaseAuth mAuth;
+    String studentEmailConverted;
+    RelativeLayout loadingProfileProgressDialog;
+    Uri profileUri;
+    ProgressBar profilePhotoUpdateProgress;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        view =  inflater.inflate(R.layout.fragment_profile, container, false);
+
+        studentProfileNameTv = view.findViewById(R.id.student_profile_name_tv);
+        studentProfileRoomNoTv = view.findViewById(R.id.student_profile_room_no_tv);
+        studentProfileRoomTypeTv = view.findViewById(R.id.student_profile_room_type_tv);
+        loadingProfileProgressDialog = view.findViewById(R.id.user_profile_progressBarRL);
+        studentProfilePictureIv = view.findViewById(R.id.student_profile_picture_iv);
+        profilePhotoUpdateProgress = view.findViewById(R.id.user_profile_photo_progressBar);
+
+        //get Firebase Database and Authentication reference
+        database = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        Log.d("studentEmailConverted", mAuth.getCurrentUser().getEmail().replaceAll("\\.", "%7"));
+        studentEmailConverted = Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail()).replaceAll("\\.", "%7");
+        studentDatabaseReference = database.getReference("Students/" + studentEmailConverted);
+
+        updateProfileWithFirebaseData(studentDatabaseReference);
+
+        //Changing Profile Picture
+        studentProfilePictureIv.setOnClickListener(v->{
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+            LayoutInflater layoutInflater= getLayoutInflater();
+            View pickImgview = layoutInflater.inflate(R.layout.image_picker_item,null);
+            builder.setCancelable(true);
+            builder.setView(pickImgview);
+            AlertDialog alertDialogImg = builder.create();
+            Window window = alertDialogImg.getWindow();
+            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            WindowManager.LayoutParams wlp = window.getAttributes();
+            wlp.gravity = Gravity.BOTTOM;
+            wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
+            alertDialogImg.show();
+            window.setAttributes(wlp);
+
+            CardView cameraCardView = pickImgview.findViewById(R.id.chooseCamera);
+            CardView galleryCardView = pickImgview.findViewById(R.id.chooseGallery);
+
+            galleryCardView.setOnClickListener(view1 -> {
+                ImagePicker.with(this)
+                        .galleryOnly()
+                        .crop(1f,1f)
+                        .maxResultSize(720, 1080)
+                        .start(0);
+                alertDialogImg.dismiss();
+            });
+            cameraCardView.setOnClickListener(view1 -> {
+                ImagePicker.with(this)
+                        .cameraOnly()
+                        .crop(1f,1f)
+                        .maxResultSize(720, 1080)
+                        .start(1);
+                alertDialogImg.dismiss();
+            });
+        });
+
+        return view;
     }
+
+    //set data of user from firebase
+    private void updateProfileWithFirebaseData(DatabaseReference studentDatabaseReference) {
+        loadingProfileProgressDialog.setVisibility(View.VISIBLE);
+
+        studentDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //getting data in strings
+                String studentName = Objects.requireNonNull(snapshot.child("name").getValue()).toString();
+                String studentRoomNo = Objects.requireNonNull(snapshot.child("room_no").getValue()).toString();
+                String studentRoomType = Objects.requireNonNull(snapshot.child("room_type").getValue()).toString();
+                String purl =  Objects.requireNonNull(snapshot.child("purl").getValue()).toString();
+
+                //setting string data in text views
+                studentProfileNameTv.setText(studentName);
+                studentProfileRoomNoTv.setText(studentRoomNo);
+                studentProfileRoomTypeTv.setText(studentRoomType);
+                Glide.with(getContext())
+                        .load(purl)
+                        .error(R.drawable.nalanda_bed_logo)
+                        .into(studentProfilePictureIv);
+                loadingProfileProgressDialog.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Failed to load your profile :(", Toast.LENGTH_SHORT).show();
+                loadingProfileProgressDialog.setVisibility(View.GONE);
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 0) {
+            profileUri = data.getData();
+            Dashboard.uploadImageToFirebase(profileUri,storageRef,userRef.child(userEmailConverted),studentProfilePictureIv,profilePhotoUpdateProgress);
+        } else if (resultCode == RESULT_OK && requestCode == 1) {
+            profileUri = data.getData();
+            Dashboard.uploadImageToFirebase(profileUri,storageRef,userRef.child(userEmailConverted),studentProfilePictureIv,profilePhotoUpdateProgress);
+        }
+    }
+
+
 }

@@ -69,6 +69,7 @@
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/rounded_black_textview.xml" value="0.145" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/rounded_swipe_transparent.xml" value="0.155" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/rounded_transparent_bg.xml" value="0.2115" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/font/titillium_web_semibold.xml" value="0.234375" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout-land/fragment_food_fragment.xml" value="0.3392330383480826" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout-night/food_menu_item.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout-port/fragment_food_fragment.xml" value="0.33" />
@@ -91,7 +92,7 @@
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/activity_user_registration.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/dashboard_story_item.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/food_menu_item.xml" value="0.33" />
-        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_dashboard_fragment.xml" value="1.0" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_dashboard_fragment.xml" value="0.825" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_default_dashboard.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_explore_fragment.xml" value="0.33" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_food_fragment.xml" value="0.25" />
