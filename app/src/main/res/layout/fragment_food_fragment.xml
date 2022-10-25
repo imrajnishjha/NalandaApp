@@ -56,7 +56,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="last night dinner menu"
+                        android:text="Rate the dinner menu"
                         android:textSize="12sp"
                         android:textColor="@color/text_grey"
                         android:fontFamily="@font/poppins_regular"
@@ -115,6 +115,27 @@
             android:text="@string/today"
             app:layout_constraintTop_toBottomOf="@id/food_rating_cv"
             app:layout_constraintStart_toStartOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:id="@+id/food_add_lunchbtn"
+            android:layout_marginEnd="19dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/no_border_curve"
+            android:text="Add Lunchbox"
+            android:textColor="@color/black"
+            android:elevation="6dp"
+            android:backgroundTint="@color/light_blue_more"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_regular"
+            android:textAllCaps="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/food_rating_cv"/>
 
         <TextView
             android:layout_width="wrap_content"

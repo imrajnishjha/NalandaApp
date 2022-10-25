@@ -2,16 +2,17 @@ package com.wormos.nalandaapp;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,7 +44,9 @@ public class food_fragment extends Fragment {
     FirebaseRecyclerOptions<FoodMenuModel> options;
     FoodMenuAdapter foodMenuAdapter;
     View view;
+    AppCompatButton addLunchBtn;
     DatabaseReference foodRatingRef = FirebaseDatabase.getInstance().getReference("Rating");
+    DatabaseReference lunchRef = FirebaseDatabase.getInstance().getReference("Lunch");
     CardView foodRatingCV;
     static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     String userEmailConverted = Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail()).replaceAll("\\.","%7");
@@ -79,10 +81,28 @@ public class food_fragment extends Fragment {
         foodRatingCV = view.findViewById(R.id.food_rating_cv);
         todayDate = view.findViewById(R.id.food_day_and_week);
         foodMenuRV = view.findViewById(R.id.food_menuRV);
+        addLunchBtn = view.findViewById(R.id.food_add_lunchbtn);
         foodMenuRV.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
         //Methodology
+
+
+        //checking the availability of the lunch
+        lunchRef.child("Lunch Available").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String status = Objects.requireNonNull(snapshot.getValue()).toString();
+                if(!status.equals("true")){
+                    addLunchBtn.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         //checking the last rating date store in device storage for fast loading;
         SharedPreferences foodRatingSP = requireContext().getSharedPreferences("foodRating", Context.MODE_PRIVATE);
@@ -96,8 +116,18 @@ public class food_fragment extends Fragment {
             }
         }
 
+        //checking the user has chosen for the launch or not
+        if(foodRatingSP.contains(todaysDateFormatter("YYYY-MM-dd"))){
+            addLunchBtn.setText(R.string.adds);
+            addLunchBtn.setEnabled(false);
+            addLunchBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#7CE79A")));
+        }
+
+
 
         dateSetter(todayDate,day1,day2,day3,day4,day5,day6,day7);
+
+        addLunchBtn.setOnClickListener(v -> sendLunchData(lunchRef,addLunchBtn,userEmailConverted));
 
 
         day1.setBackgroundColor(Color.parseColor("#2D6BC8"));
@@ -275,23 +305,30 @@ public class food_fragment extends Fragment {
 
         HashMap<String,Object> ratingMap = new HashMap<>();
         ratingMap.put(todaysDateFormatter("YYYY-MM-dd"),num);
-        ratingRef.child(userEmail).updateChildren(ratingMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void unused) {
-                HashMap<String,Object> ratingDateMap = new HashMap<>();
-                ratingDateMap.put("0000Last Rating Date",todaysDateFormatter("YYYY-MM-dd"));
-                ratingRef.child(userEmail).updateChildren(ratingDateMap).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        CV.setVisibility(View.GONE);
-                        Toast.makeText(view.getContext(), "Thanks for submitting the feedback", Toast.LENGTH_SHORT).show();
-                        SharedPreferences foodRatingSP = requireContext().getSharedPreferences("foodRating", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor foodRatingEditor = foodRatingSP.edit();
-                        foodRatingEditor.putString("lastFoodRatingDate",todaysDateFormatter("YYYY-MM-dd"));
-                        foodRatingEditor.apply();
-                    }
-                });
-            }
+        ratingRef.child(userEmail).updateChildren(ratingMap).addOnSuccessListener(unused -> {
+            HashMap<String,Object> ratingDateMap = new HashMap<>();
+            ratingDateMap.put("0000Last Rating Date",todaysDateFormatter("YYYY-MM-dd"));
+            ratingRef.child(userEmail).updateChildren(ratingDateMap).addOnSuccessListener(unused1 -> {
+                CV.setVisibility(View.GONE);
+                Toast.makeText(view.getContext(), "Thanks for submitting the feedback", Toast.LENGTH_SHORT).show();
+                SharedPreferences foodRatingSP = requireContext().getSharedPreferences("foodRating", Context.MODE_PRIVATE);
+                SharedPreferences.Editor foodRatingEditor = foodRatingSP.edit();
+                foodRatingEditor.putString("lastFoodRatingDate",todaysDateFormatter("YYYY-MM-dd"));
+                foodRatingEditor.apply();
+            });
+        });
+    }
+    public void sendLunchData(DatabaseReference lunchRef,AppCompatButton addLunchBtn,String userEmail){
+        HashMap<String,Object> lunchData = new HashMap<>();
+        lunchData.put(userEmail,"Yes");
+        lunchRef.child("Lunch Data").child(todaysDateFormatter("YYYY-MM-dd")).updateChildren(lunchData).addOnSuccessListener( success ->{
+            addLunchBtn.setText(R.string.adds);
+            addLunchBtn.setEnabled(false);
+            addLunchBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#7CE79A")));
+            SharedPreferences foodRatingSP = requireContext().getSharedPreferences("foodRating", Context.MODE_PRIVATE);
+            SharedPreferences.Editor foodRatingEditor = foodRatingSP.edit();
+            foodRatingEditor.putString(todaysDateFormatter("YYYY-MM-dd"),"yes");
+            foodRatingEditor.apply();
         });
     }
 

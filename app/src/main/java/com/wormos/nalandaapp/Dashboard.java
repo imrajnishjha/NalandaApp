@@ -137,10 +137,10 @@ public class Dashboard extends AppCompatActivity {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
             Log.d("uhj", "onBubbleClick: " + i);
             switch (i) {
-                case 2131362068:
+                case 2131362069:
                     transaction.replace(R.id.dashboard_fragment_holder, new food_fragment());
                     break;
-                case 2131362296:
+                case 2131362299:
                     transaction.replace(R.id.dashboard_fragment_holder, new my_room_fragment());
                     break;
                 case 2131361957:
@@ -149,7 +149,7 @@ public class Dashboard extends AppCompatActivity {
                 case 2131362026:
                     transaction.replace(R.id.dashboard_fragment_holder, new explore_fragment());
                     break;
-                case 2131362263:
+                case 2131362264:
                     transaction.replace(R.id.dashboard_fragment_holder, new ProfileFragment());
                     break;
             }

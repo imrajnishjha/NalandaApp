@@ -1443,4 +1443,6 @@
         <item>Select a city</item>
     </string-array>
 
+    <string name="adds">Added</string>
+
 </resources>
