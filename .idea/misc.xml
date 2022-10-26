@@ -54,6 +54,7 @@
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/fragment_refer_fragment.xml" value="0.21403508771929824" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/layout/transport_schedule_item.xml" value="0.21403508771929824" />
         <entry key="..\:/Android/Android_Projects/NalandaApp/app/src/main/res/menu/bottom_navigation.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable-v24/textview_boundary.xml" value="0.155" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/button_style_curve.xml" value="0.1455" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/button_style_more_curve.xml" value="0.1455" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/circle_shape.xml" value="0.1455" />
@@ -64,9 +65,11 @@
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1455" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1455" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/light_blue_rounded_btn.xml" value="0.2115" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/no_border_curve.xml" value="0.155" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/rounded_black_background.xml" value="0.145" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/rounded_black_edt_txt.xml" value="0.145" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/rounded_black_textview.xml" value="0.145" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/rounded_swipe.xml" value="0.155" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/rounded_swipe_transparent.xml" value="0.155" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/drawable/rounded_transparent_bg.xml" value="0.2115" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/font/titillium_web_semibold.xml" value="0.234375" />
@@ -85,6 +88,7 @@
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/activity_explore_nalanda.xml" value="0.49" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/activity_hostel_detail.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/activity_main.xml" value="0.19074074074074074" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/activity_my_grievance.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/activity_payment_options.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/activity_select_hostel.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/activity_story_view.xml" value="0.25" />
@@ -102,10 +106,11 @@
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_profile.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_refer.xml" value="0.2" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_services.xml" value="0.25" />
-        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_support.xml" value="0.25" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_support.xml" value="0.3865877712031558" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_test.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/fragment_transport.xml" value="0.25" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/grievance_popup.xml" value="0.33" />
+        <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/grievence_item.xml" value="0.3726315789473684" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/image_picker_item.xml" value="0.203125" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/spinner_dropdown_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/StudioProjects/Nalanda_App/app/src/main/res/layout/spinner_item.xml" value="0.203125" />

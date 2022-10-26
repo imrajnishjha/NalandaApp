@@ -1,5 +1,6 @@
 package com.wormos.nalandaapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.constraintlayout.motion.widget.MotionLayout;
@@ -12,11 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class SupportFragment extends Fragment {
 
     View view;
     RecyclerView swipeMenu;
+    CircleImageView myGrievanceIcon;
     String[] supportName ={"Internet","Housekeeping","Laundry","Others"};
     int[] supportImage={R.drawable.wifibw,R.drawable.housekeepingbw,R.drawable.laundrybw,R.drawable.settingbe};
 
@@ -31,10 +35,14 @@ public class SupportFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_support, container, false);
+        myGrievanceIcon = view.findViewById(R.id.support_grievance_icon);
+        myGrievanceIcon.setOnClickListener(v->startActivity(new Intent(view.getContext(),MyGrievance.class)));
 
         //Support RecycleView
 
         swipeMenu = view.findViewById(R.id.support_menu_RV);
+
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(view.getContext()) {
             @Override
             public boolean canScrollVertically() {

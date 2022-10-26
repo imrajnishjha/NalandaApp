@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:outlineAmbientShadowColor="@color/different_white"
+    android:outlineSpotShadowColor="@color/different_white"
+    android:background="@color/different_white"
+    android:backgroundTint="@color/different_white"
+    app:cardBackgroundColor="@color/different_white">
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/grievanceItemMotion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:outlineAmbientShadowColor="@color/different_white"
+        android:outlineSpotShadowColor="@color/different_white"
+        android:backgroundTint="@color/different_white"
+        android:background="@color/different_white"
+        android:layout_marginBottom="5dp"
+        app:layoutDescription="@xml/grievence_item_xml_grievanceitemmotion_scene">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/grievanceItemTV"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/rounded_swipe"
+            android:elevation="6dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:gravity="center|start"
+            android:paddingStart="20dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="45dp"
+            android:paddingBottom="5dp"
+            android:text="hello"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/grievanceItemArrowBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/ic_baseline_keyboard_arrow_up_24"
+            android:backgroundTint="@color/different_black"
+            android:elevation="6dp"
+            app:layout_constraintBottom_toBottomOf="@id/grievanceItemTV"
+            app:layout_constraintEnd_toEndOf="@id/grievanceItemTV"
+            app:layout_constraintTop_toTopOf="@id/grievanceItemTV" />
+
+        <TextView
+            android:id="@+id/grievanceItemStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:elevation="6dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="solved"
+            android:textColor="#0F9F1D"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="@id/grievanceItemTV"
+            app:layout_constraintEnd_toStartOf="@id/grievanceItemArrowBtn"
+            app:layout_constraintTop_toTopOf="@id/grievanceItemTV" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="7dp"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:text="Subject"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/grievanceItemSubject"
+            app:layout_constraintTop_toTopOf="@id/grievanceItemSubject" />
+
+        <TextView
+            android:id="@+id/grievanceItemSubject"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="-5dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/button_style_curve"
+            android:justificationMode="inter_word"
+            android:paddingStart="10dp"
+            android:paddingTop="28dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="10dp"
+            android:text="safd asdf asfjh asfjdh asjfdg ajf jhg asdf asdf asdf asdf asfd asdf asdf r adf"
+            android:textColor="@color/different_black"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/grievanceItemTV"
+            app:layout_constraintStart_toStartOf="@id/grievanceItemTV"
+            app:layout_constraintTop_toBottomOf="@id/grievanceItemTV" />
+
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</androidx.cardview.widget.CardView>

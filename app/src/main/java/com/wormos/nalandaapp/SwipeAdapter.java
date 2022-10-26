@@ -80,7 +80,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.swipeView>{
                             String issueTopic;
                             switch (holder.getAdapterPosition()){
                                 case 0:
-                                    issueTopic = "Internet";
+                                    issueTopic = "Wi-Fi";
                                     break;
                                 case 1:
                                     issueTopic = "HouseKeeping";
@@ -92,15 +92,22 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.swipeView>{
                                     issueTopic = "Other";
                                     break;
                             }
+                            DatabaseReference grievanceUserRef = FirebaseDatabase.getInstance().getReference("Grievance by User")
+                                    .child(Dashboard.userEmailConverted);
                             DatabaseReference grievanceRef = FirebaseDatabase.getInstance().getReference("Grievance")
-                                    .child(Dashboard.userEmailConverted).child(issueTopic);
+                                    .child(issueTopic).child(Dashboard.userEmailConverted);
                             HashMap<String,Object> grievanceMap = new HashMap<>();
                             grievanceMap.put("subject",subjectEdx.getText().toString());
                             grievanceMap.put("description",descriptionEdx.getText().toString());
+                            grievanceMap.put("relation",issueTopic);
                             grievanceMap.put("date",food_fragment.todaysDateFormatter("YYYY-MM-dd"));
+                            grievanceMap.put("status","unsolved");
                             String key = grievanceRef.push().getKey();
                             assert key != null;
-                            grievanceRef.child(key).updateChildren(grievanceMap);
+                            grievanceUserRef.child(key).updateChildren(grievanceMap);
+                            grievanceRef.child(key).updateChildren(grievanceMap).addOnSuccessListener(s->{
+                                holder.motionLayout.setProgress(0);
+                            });
                             grievanceDialog.dismiss();
                             Toast.makeText(motionLayout.getContext(), "✔Submitted", Toast.LENGTH_SHORT).show();
                         }
