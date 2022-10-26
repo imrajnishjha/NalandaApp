@@ -49,7 +49,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.swipeView>{
         holder.motionLayout.addTransitionListener(new MotionLayout.TransitionListener() {
             @Override
             public void onTransitionStarted(MotionLayout motionLayout, int startId, int endId) {
-
+                Log.d("sfadf", "onTransitionStarted: "+startId+" "+endId);
             }
 
             @Override
@@ -59,7 +59,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.swipeView>{
 
             @Override
             public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
-                if(currentId==2131362008){
+                if(currentId==2131362009){
                     Dialog grievanceDialog = new Dialog(motionLayout.getContext());
                     View grievanceView = LayoutInflater.from(motionLayout.getContext()).inflate(R.layout.grievance_popup,motionLayout,false);
                     EditText subjectEdx = grievanceView.findViewById(R.id.subjectEdt);
