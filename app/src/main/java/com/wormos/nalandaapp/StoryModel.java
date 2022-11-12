@@ -1,14 +1,13 @@
 package com.wormos.nalandaapp;
 
 public class StoryModel {
-    String videoPurl,thumbnail;
+    String videoPurl;
 
     public StoryModel() {
     }
 
-    public StoryModel(String videoPurl, String thumbnail) {
+    public StoryModel(String videoPurl) {
         this.videoPurl = videoPurl;
-        this.thumbnail = thumbnail;
     }
 
     public String getVideoPurl() {
@@ -19,11 +18,4 @@ public class StoryModel {
         this.videoPurl = videoPurl;
     }
 
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
 }
