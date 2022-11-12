@@ -54,7 +54,7 @@ public class Dashboard extends AppCompatActivity {
     Uri profileUri;
     static FirebaseAuth mAuth = FirebaseAuth.getInstance();
     static DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Students");
-    static StorageReference storageRef = FirebaseStorage.getInstance().getReference("/Profile Picture");
+    static StorageReference storageRef = FirebaseStorage.getInstance().getReference("Profile Picture/" + Objects.requireNonNull(mAuth.getCurrentUser()).getEmail() + "ProfilePicture");
     static String userEmailConverted= Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail()).replaceAll("\\.","%7");;
     ProgressBar profilePhotoUpdateProgress;
 
@@ -84,7 +84,7 @@ public class Dashboard extends AppCompatActivity {
                 String NameStr = Objects.requireNonNull(snapshot.child("name").getValue()).toString();
                 Glide.with(getApplicationContext())
                         .load(ProfilePurl)
-                        .error(R.drawable.nalanda_bed_logo)
+                        .error(R.drawable.defaultprofile2)
                         .into(userProfile);
             }
 

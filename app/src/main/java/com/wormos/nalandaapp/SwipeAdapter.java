@@ -1,10 +1,11 @@
 package com.wormos.nalandaapp;
 
-import android.annotation.SuppressLint;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +61,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.swipeView>{
             @Override
             public void onTransitionCompleted(MotionLayout motionLayout, int currentId) {
                 if(currentId==2131362009){
+                    new Handler().postDelayed(()->holder.motionLayout.setProgress(0),350);
                     Dialog grievanceDialog = new Dialog(motionLayout.getContext());
                     View grievanceView = LayoutInflater.from(motionLayout.getContext()).inflate(R.layout.grievance_popup,motionLayout,false);
                     EditText subjectEdx = grievanceView.findViewById(R.id.subjectEdt);
@@ -78,7 +80,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.swipeView>{
                             descriptionEdx.requestFocus();
                         } else {
                             String issueTopic;
-                            switch (holder.getAdapterPosition()){
+                            switch (holder.getBindingAdapterPosition()){
                                 case 0:
                                     issueTopic = "Wi-Fi";
                                     break;
@@ -105,9 +107,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.swipeView>{
                             String key = grievanceRef.push().getKey();
                             assert key != null;
                             grievanceUserRef.child(key).updateChildren(grievanceMap);
-                            grievanceRef.child(key).updateChildren(grievanceMap).addOnSuccessListener(s->{
-                                holder.motionLayout.setProgress(0);
-                            });
+                            grievanceRef.child(key).updateChildren(grievanceMap);
                             grievanceDialog.dismiss();
                             Toast.makeText(motionLayout.getContext(), "✔Submitted", Toast.LENGTH_SHORT).show();
                         }

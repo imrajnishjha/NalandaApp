@@ -16,6 +16,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
@@ -27,7 +28,9 @@ public class SelectHostel extends AppCompatActivity {
     ImageView chanakayaHostel, dronaHostel, collegeHostel, vanyaHostel, vanyaLocationIcon;
     AppCompatButton selectDetailBackBtn;
     CardView chanakayaDetail, dronaDetail, collegeDetail, vanyaDetail, selectHostelPayBtn;
+    private final DatabaseReference regDataReference = FirebaseDatabase.getInstance().getReference("New Registration/");
     boolean isFemale = false;
+    String defaultPurl ="https://firebasestorage.googleapis.com/v0/b/nalanda-app.appspot.com/o/Profile%20Picture%2Fdefaultprofile2.png?alt=media&token=c3652cef-f1c4-4ac2-b86d-04fed0a4dbb7";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +78,7 @@ public class SelectHostel extends AppCompatActivity {
             } else if (seater == 0) {
                 Toast.makeText(this, "Select room capacity", Toast.LENGTH_SHORT).show();
             } else {
+                regComplete(getIntent(), regDataReference);
                 startActivity(new Intent(this, PaymentOptions.class));
             }
         });
@@ -169,12 +173,13 @@ public class SelectHostel extends AppCompatActivity {
         regData.put("city", intent.getStringExtra("city"));
         regData.put("hostel", selectedHostel);
         regData.put("seater", seater);
+        regData.put("id","#23432434");
+        regData.put("purl",defaultPurl);
 
-        registrationRef.updateChildren(regData).addOnSuccessListener(s -> {
-            Toast.makeText(SelectHostel.this, "Registration successful", Toast.LENGTH_SHORT).show();
-        }).addOnFailureListener(fail -> {
-            Toast.makeText(SelectHostel.this, "Please try again", Toast.LENGTH_SHORT).show();
-        });
+        registrationRef.child(selectedHostel).child(intent.getStringExtra("email").replaceAll("\\.", "%7"))
+                .updateChildren(regData)
+                .addOnSuccessListener(s -> Toast.makeText(SelectHostel.this, "Registration successful", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(fail -> Toast.makeText(SelectHostel.this, "Please try again", Toast.LENGTH_SHORT).show());
 
     }
 

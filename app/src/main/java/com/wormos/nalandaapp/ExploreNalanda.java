@@ -24,7 +24,7 @@ public class ExploreNalanda extends AppCompatActivity {
         exploreBtn = findViewById(R.id.explore_registration_btn);
 
         //Methodology
-        exploreBtn.setOnClickListener(view -> startActivity(new Intent(this, UserRegistration.class)));
+        exploreBtn.setOnClickListener(view -> startActivity(new Intent(this, RegistrationExplore.class)));
         loginBtn.setOnClickListener(view -> startActivity(new Intent(this, UserLogin.class)));
     }
     @Override

@@ -151,7 +151,7 @@ public class ProfileFragment extends Fragment {
                 studentProfileRoomTypeTv.setText(studentRoomType);
                 Glide.with(requireContext())
                         .load(purl)
-                        .error(R.drawable.nalanda_bed_logo)
+                        .error(R.drawable.defaultprofile2)
                         .into(studentProfilePictureIv);
                 loadingProfileProgressDialog.setVisibility(View.GONE);
             }

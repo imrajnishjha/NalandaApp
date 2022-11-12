@@ -16,9 +16,9 @@ import java.util.Random;
 
 public class PaymentOptions extends AppCompatActivity {
 
-    AppCompatButton getIdBtn,paymentBackBtn;
-    TextView cashTv,chequeTv;
-    int payOptionSelected=0;
+    AppCompatButton getIdBtn, paymentBackBtn;
+    TextView cashTv, chequeTv;
+    int payOptionSelected = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,24 +30,24 @@ public class PaymentOptions extends AppCompatActivity {
         chequeTv = findViewById(R.id.payment_cheque_edtTxt);
 
         paymentBackBtn.setOnClickListener(view -> finish());
-        cashTv.setOnClickListener(view -> selectPaymentOptions(cashTv,chequeTv));
-        chequeTv.setOnClickListener(view -> selectPaymentOptions(chequeTv,cashTv));
+        cashTv.setOnClickListener(view -> selectPaymentOptions(cashTv, chequeTv));
+        chequeTv.setOnClickListener(view -> selectPaymentOptions(chequeTv, cashTv));
         getIdBtn.setOnClickListener(view -> {
-            if(payOptionSelected==0){
+            if (payOptionSelected == 0) {
                 Toast.makeText(this, "Please select a payment option", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(this, "Your Id is \n"+getSaltString(), Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "Your Id is \n" + getSaltString(), Toast.LENGTH_LONG).show();
             }
         });
     }
 
     //function to select options
-    public void selectPaymentOptions(TextView textView,TextView other){
-        payOptionSelected=1;
+    public void selectPaymentOptions(TextView textView, TextView other) {
+        payOptionSelected = 1;
         textView.setTextColor(Color.parseColor("#f5f5f5"));
-        textView.setBackground(ContextCompat.getDrawable(PaymentOptions.this,R.drawable.rounded_black_background));
+        textView.setBackground(ContextCompat.getDrawable(PaymentOptions.this, R.drawable.rounded_black_background));
         other.setTextColor(Color.parseColor("#FF000000"));
-        other.setBackground(ContextCompat.getDrawable(PaymentOptions.this,R.drawable.rounded_black_edt_txt));
+        other.setBackground(ContextCompat.getDrawable(PaymentOptions.this, R.drawable.rounded_black_edt_txt));
     }
 
     //generate an Id
@@ -57,7 +57,7 @@ public class PaymentOptions extends AppCompatActivity {
         Random rnd = new Random();
         while (salt.length() < 24) { // length of the random string.
             int index = (int) (rnd.nextFloat() * alphaNumeric.length());
-            Log.d("TAG", "getSaltString: "+index+" "+rnd.nextFloat()+" "+alphaNumeric.length());
+            Log.d("TAG", "getSaltString: " + index + " " + rnd.nextFloat() + " " + alphaNumeric.length());
             salt.append(alphaNumeric.charAt(index));
         }
         return salt.toString();
