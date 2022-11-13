@@ -47,8 +47,10 @@ public class food_fragment extends Fragment {
     AppCompatButton addLunchBtn;
     DatabaseReference foodRatingRef = FirebaseDatabase.getInstance().getReference("Rating");
     DatabaseReference lunchRef = FirebaseDatabase.getInstance().getReference("Lunch");
+    DatabaseReference studentRef = FirebaseDatabase.getInstance().getReference("Students");
     CardView foodRatingCV;
     static FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    String hostelName,userId;
     String userEmailConverted = Objects.requireNonNull(Objects.requireNonNull(mAuth.getCurrentUser()).getEmail()).replaceAll("\\.","%7");
 
     @Override
@@ -87,15 +89,38 @@ public class food_fragment extends Fragment {
 
         //Methodology
 
-
-        //checking the availability of the lunch
-        lunchRef.child("Lunch Available").addListenerForSingleValueEvent(new ValueEventListener() {
+        //getting the name of Hostel and after getting that using the hostel name to check the availability of the lunch
+        studentRef.child(userEmailConverted).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String status = Objects.requireNonNull(snapshot.getValue()).toString();
-                if(!status.equals("true")){
-                    addLunchBtn.setVisibility(View.GONE);
-                }
+                //gettingHostelDetail
+                hostelName= Objects.requireNonNull(snapshot.child("hostel").getValue()).toString();
+                userId = Objects.requireNonNull(snapshot.child("id").getValue()).toString();
+
+                //checking the availability of the lunch
+                lunchRef.child(hostelName).child("Lunch Available").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(!snapshot.exists()){
+                            HashMap<String,Object> lunchAvailableMap = new HashMap<>();
+                            lunchAvailableMap.put("Lunch Available","true");
+                            lunchAvailableMap.put("date",todaysDateFormatter("YYYY-MM-dd"));
+                            lunchRef.child(hostelName).updateChildren(lunchAvailableMap);
+                        } else {
+                            String status = Objects.requireNonNull(snapshot.getValue()).toString();
+                            if(!status.equals("true")){
+                                addLunchBtn.setVisibility(View.GONE);
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
             }
 
             @Override
@@ -103,6 +128,10 @@ public class food_fragment extends Fragment {
 
             }
         });
+
+
+        //
+
 
         //checking the last rating date store in device storage for fast loading;
         SharedPreferences foodRatingSP = requireContext().getSharedPreferences("foodRating", Context.MODE_PRIVATE);
@@ -320,8 +349,9 @@ public class food_fragment extends Fragment {
     }
     public void sendLunchData(DatabaseReference lunchRef,AppCompatButton addLunchBtn,String userEmail){
         HashMap<String,Object> lunchData = new HashMap<>();
-        lunchData.put(userEmail,"Yes");
-        lunchRef.child("Lunch Data").child(todaysDateFormatter("YYYY-MM-dd")).updateChildren(lunchData).addOnSuccessListener( success ->{
+        lunchData.put("id",userId);
+        lunchRef.child("Lunch Data").child(todaysDateFormatter("YYYY-MM-dd")).child(hostelName)
+                .child(userEmail).updateChildren(lunchData).addOnSuccessListener( success ->{
             addLunchBtn.setText(R.string.adds);
             addLunchBtn.setEnabled(false);
             addLunchBtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#7CE79A")));
