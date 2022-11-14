@@ -145,7 +145,7 @@ public class food_fragment extends Fragment {
             }
         }
 
-        //checking the user has chosen for the launch or not
+        //checking the user has chosen for the lunch or not
         if(foodRatingSP.contains(todaysDateFormatter("YYYY-MM-dd"))){
             addLunchBtn.setText(R.string.adds);
             addLunchBtn.setEnabled(false);
@@ -257,7 +257,7 @@ public class food_fragment extends Fragment {
         //Food RecycleView Implementation
 
         options = new FirebaseRecyclerOptions.Builder<FoodMenuModel>()
-                .setQuery(FirebaseDatabase.getInstance().getReference("Food Menu").child("Sunday"), FoodMenuModel.class)
+                .setQuery(FirebaseDatabase.getInstance().getReference("Food Menu").child(weekday), FoodMenuModel.class)
                 .build();
         foodMenuAdapter = new FoodMenuAdapter(options);
         foodMenuRV.setAdapter(foodMenuAdapter);

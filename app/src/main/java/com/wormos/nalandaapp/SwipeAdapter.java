@@ -19,16 +19,21 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.swipeView>{
 
     Context context;
     String[] supportName;
     int[] supportImg;
+    DatabaseReference studentRef = FirebaseDatabase.getInstance().getReference("Students");
 
     public SwipeAdapter(Context context, String[] supportName, int[] supportImg) {
         this.context = context;
@@ -94,22 +99,37 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.swipeView>{
                                     issueTopic = "Other";
                                     break;
                             }
-                            DatabaseReference grievanceUserRef = FirebaseDatabase.getInstance().getReference("Grievance by User")
-                                    .child(Dashboard.userEmailConverted);
-                            DatabaseReference grievanceRef = FirebaseDatabase.getInstance().getReference("Grievance")
-                                    .child(issueTopic).child(Dashboard.userEmailConverted);
-                            HashMap<String,Object> grievanceMap = new HashMap<>();
-                            grievanceMap.put("subject",subjectEdx.getText().toString());
-                            grievanceMap.put("description",descriptionEdx.getText().toString());
-                            grievanceMap.put("relation",issueTopic);
-                            grievanceMap.put("date",food_fragment.todaysDateFormatter("YYYY-MM-dd"));
-                            grievanceMap.put("status","unsolved");
-                            String key = grievanceRef.push().getKey();
-                            assert key != null;
-                            grievanceUserRef.child(key).updateChildren(grievanceMap);
-                            grievanceRef.child(key).updateChildren(grievanceMap);
-                            grievanceDialog.dismiss();
-                            Toast.makeText(motionLayout.getContext(), "✔Submitted", Toast.LENGTH_SHORT).show();
+                            studentRef.child(Dashboard.userEmailConverted).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    String hostelName= Objects.requireNonNull(snapshot.child("hostel").getValue()).toString();
+                                    DatabaseReference grievanceUserRef = FirebaseDatabase.getInstance().getReference("Grievance by User")
+                                            .child(Dashboard.userEmailConverted);
+                                    DatabaseReference grievanceIssueRef = FirebaseDatabase.getInstance().getReference("Grievance by Issue").child(hostelName)
+                                            .child(issueTopic);
+                                    DatabaseReference grievanceRef = FirebaseDatabase.getInstance().getReference("Grievance").child(hostelName);
+                                    HashMap<String,Object> grievanceMap = new HashMap<>();
+                                    grievanceMap.put("subject",subjectEdx.getText().toString());
+                                    grievanceMap.put("description",descriptionEdx.getText().toString());
+                                    grievanceMap.put("relation",issueTopic);
+                                    grievanceMap.put("date",food_fragment.todaysDateFormatter("YYYY-MM-dd"));
+                                    grievanceMap.put("status","unsolved");
+                                    grievanceMap.put("email",Dashboard.userEmailConverted);
+                                    String key = grievanceRef.push().getKey();
+                                    assert key != null;
+                                    grievanceUserRef.child(key).updateChildren(grievanceMap);
+                                    grievanceRef.child(key).updateChildren(grievanceMap);
+                                    grievanceIssueRef.child(key).updateChildren(grievanceMap);
+                                    grievanceDialog.dismiss();
+                                    Toast.makeText(motionLayout.getContext(), "✔Submitted", Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
                         }
                     });
                 }
