@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -18,8 +19,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Objects;
@@ -29,6 +33,8 @@ public class ReferFragment extends Fragment {
     View view;
     EditText referredName,referredCollege,referredNumber;
     CardView referSubmitBtn;
+    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Students");
+    String studentName;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,18 @@ public class ReferFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        userRef.child(Dashboard.userEmailConverted).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                studentName = Objects.requireNonNull(snapshot.child("name").getValue()).toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         view = inflater.inflate(R.layout.fragment_refer, container, false);
         referredCollege=view.findViewById(R.id.refer_college_name_edtTxt);
@@ -84,11 +102,13 @@ public class ReferFragment extends Fragment {
 
     //send a data to firebase Realtime Database;
     public void uploadToDatabase(){
-        DatabaseReference referRef = FirebaseDatabase.getInstance().getReference("Refer").child(Dashboard.userEmailConverted);
+        DatabaseReference referRef = FirebaseDatabase.getInstance().getReference("Refer");
         HashMap<String,Object> dataMap = new HashMap<>();
         dataMap.put("name",referredName.getText().toString());
         dataMap.put("college",referredCollege.getText().toString());
-        dataMap.put("phone no",referredNumber.getText().toString());
+        dataMap.put("phoneNo",referredNumber.getText().toString());
+        dataMap.put("referralEmail",Dashboard.userEmailConverted);
+        dataMap.put("referralName",studentName);
         String key = referRef.push().getKey();
         referRef.child(Objects.requireNonNull(key)).updateChildren(dataMap).addOnCompleteListener(task -> {
             if(task.isSuccessful()){
