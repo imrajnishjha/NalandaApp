@@ -82,7 +82,7 @@ public class UserLogin extends AppCompatActivity {
                                 notifye(token);
                             }
                         });
-                        startActivity(new Intent(UserLogin.this,Dashboard.class).putExtra("userEmail",login_email.replaceAll("\\.","%7")));
+                        startActivity(new Intent(UserLogin.this,Dashboard.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK));
                         finish();
                         Toast.makeText(UserLogin.this, "You are logged in!", Toast.LENGTH_SHORT).show();
                     } else {
